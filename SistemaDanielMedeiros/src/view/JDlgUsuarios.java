@@ -7,28 +7,22 @@ package view;
 
 import tools.Util;
 
-
 /**
  *
  * @author u10916731103
  */
 public class JDlgUsuarios extends javax.swing.JDialog {
 
-
-
-
     public JDlgUsuarios(java.awt.Frame parent, boolean modal) {
-      super(parent, modal);
-        initComponents();   
+        super(parent, modal);
+        initComponents();
         setTitle("Cadastro de Usuários");
         setLocationRelativeTo(null);
-        Util.habilitar(false,jTxtCodigo,jTxtNome,jFmtCpf,
-    jChbAtivo, jTxtApelido,jCboNivel,jBtnConfirmar, jBtnCancelar, jFmtDataDeNascimento, jPwdSenha);
-        Util.limpar(jTxtCodigo,jTxtNome,jFmtCpf,jFmtDataDeNascimento,jPwdSenha,jChbAtivo,jCboNivel);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jFmtCpf,
+        jChbAtivo, jTxtApelido, jCboNivel, jBtnConfirmar, jBtnCancelar, jFmtDataDeNascimento, jPwdSenha);
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
     }
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -255,39 +249,39 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
- Util.habilitar(true,jTxtCodigo,jTxtNome,jFmtCpf,
-         jFmtDataDeNascimento,jPwdSenha,jChbAtivo,jCboNivel,jBtnConfirmar, jBtnCancelar, jTxtApelido);
-      
-        Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-       Util.limpar(jTxtCodigo,jTxtNome,jFmtCpf,
-        jFmtDataDeNascimento,jPwdSenha,jChbAtivo,jCboNivel);
+        Util.habilitar(true, jTxtCodigo, jTxtNome, jFmtCpf,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
+
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-Util.habilitar(true,jTxtCodigo,jTxtNome,jFmtCpf,
-         jFmtDataDeNascimento,jPwdSenha,jChbAtivo,jCboNivel,jBtnConfirmar, jBtnCancelar, jTxtApelido);
-      
-        Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-       Util.limpar(jTxtCodigo,jTxtNome,jFmtCpf,
-        jFmtDataDeNascimento,jPwdSenha,jChbAtivo,jCboNivel);
+        Util.habilitar(true, jTxtCodigo, jTxtNome, jFmtCpf,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
+
+        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
         // TODO add your handling code here:
-Util.perguntar("Deseja mesmo Excluir?");
+        Util.perguntar("Deseja mesmo Excluir?");
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
- Util.habilitar(false,jTxtCodigo,jTxtNome,jFmtCpf,
-         jFmtDataDeNascimento,jPwdSenha,jChbAtivo,jCboNivel,jBtnConfirmar, jBtnCancelar, jTxtApelido);
-      
-        Util.habilitar(true,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-       Util.limpar(jTxtCodigo,jTxtNome,jFmtCpf,
-        jFmtDataDeNascimento,jPwdSenha,jChbAtivo,jCboNivel);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jFmtCpf,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
+
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
@@ -295,21 +289,20 @@ Util.perguntar("Deseja mesmo Excluir?");
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
         // TODO add your handling code here: 
 
-
-JDlgUsuariosPesquisar jDlgUsuariosPesquisar = new JDlgUsuariosPesquisar(null, true);
-jDlgUsuariosPesquisar.setJDlgUsuarios(this);
-jDlgUsuariosPesquisar.setVisible(true);
+        JDlgUsuariosPesquisar jDlgUsuariosPesquisar = new JDlgUsuariosPesquisar(null, true);
+        jDlgUsuariosPesquisar.setJDlgUsuarios(this);
+        jDlgUsuariosPesquisar.setVisible(true);
 
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
- Util.habilitar(false,jTxtCodigo,jTxtNome,jFmtCpf,
-         jFmtDataDeNascimento,jPwdSenha,jChbAtivo,jCboNivel,jBtnConfirmar, jBtnCancelar, jTxtApelido);
-      
-        Util.habilitar(true,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-       Util.limpar(jTxtCodigo,jTxtNome,jFmtCpf,
-        jFmtDataDeNascimento,jPwdSenha,jChbAtivo,jCboNivel);
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jFmtCpf,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
+
+        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jTxtCodigoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTxtCodigoFocusLost
