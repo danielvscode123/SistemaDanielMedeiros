@@ -19,7 +19,7 @@ import tools.Util;
 public class JDlgClientes extends javax.swing.JDialog {
     
     /**
-     * Creates new form JDlgUsuarios
+     * Creates new form JDlgClientes
      */
     
 
@@ -483,7 +483,9 @@ Util.perguntar("Tem certeza que deseja excluir?");
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
-      
+      JDlgClientesPesquisar jDlgClientesPesquisar = new JDlgClientesPesquisar(null, true);
+jDlgClientesPesquisar.setJDlgClientes(this);
+jDlgClientesPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jFmtDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFmtDataNascimentoActionPerformed
