@@ -296,6 +296,10 @@ Util.perguntar("Deseja mesmo Excluir?");
         // TODO add your handling code here: 
 
 
+JDlgUsuariosPesquisar jDlgUsuariosPesquisar = new JDlgUsuariosPesquisar(null, true);
+jDlgUsuariosPesquisar.setJDlgUsuarios(this);
+jDlgUsuariosPesquisar.setVisible(true);
+
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
