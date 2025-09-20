@@ -9,20 +9,20 @@ package view;
  *
  * @author Arte Porã
  */
-public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
+public class JDlgProdutosPesquisar extends javax.swing.JDialog {
 
-JDlgUsuarios jDlgUsuarios;
+JDlgProdutos jDlgProdutos;
     /**
-     * Creates new form JDlgUsuariosPesquisar
+     * Creates new form JDlgProdutosPesquisar
      */
-    public JDlgUsuariosPesquisar(java.awt.Frame parent, boolean modal) {
+    public JDlgProdutosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
             setLocationRelativeTo(null);
     }
 
-        public void setJDlgUsuarios(JDlgUsuarios jDlgUsuarios){
-    this.jDlgUsuarios = jDlgUsuarios;
+        public void setJDlgProdutos(JDlgProdutos jDlgProdutos){
+    this.jDlgProdutos = jDlgProdutos;
     }
 
     /**
@@ -105,20 +105,21 @@ JDlgUsuarios jDlgUsuarios;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgProdutosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgProdutosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgProdutosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JDlgUsuariosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JDlgProdutosPesquisar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDlgUsuariosPesquisar dialog = new JDlgUsuariosPesquisar(new javax.swing.JFrame(), true);
+                JDlgProdutosPesquisar dialog = new JDlgProdutosPesquisar(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
