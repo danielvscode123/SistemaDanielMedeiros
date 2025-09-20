@@ -92,6 +92,7 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
 
         jBtnIncluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/incluir.png"))); // NOI18N
         jBtnIncluir.setText("Incluir");
+        jBtnIncluir.setFocusTraversalPolicyProvider(true);
         jBtnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnIncluirActionPerformed(evt);
@@ -100,6 +101,7 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
 
         jBtnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar.png"))); // NOI18N
         jBtnAlterar.setText("Alterar");
+        jBtnAlterar.setFocusTraversalPolicyProvider(true);
         jBtnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnAlterarActionPerformed(evt);
@@ -108,6 +110,7 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
 
         jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Excluir.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
+        jBtnExcluir.setFocusTraversalPolicyProvider(true);
         jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnExcluirActionPerformed(evt);
@@ -116,6 +119,7 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
 
         jBtnConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/gravar.png"))); // NOI18N
         jBtnConfirmar.setText("Confirmar");
+        jBtnConfirmar.setFocusTraversalPolicyProvider(true);
         jBtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnConfirmarActionPerformed(evt);
@@ -124,6 +128,7 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
 
         jBtnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/exit.png"))); // NOI18N
         jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.setFocusTraversalPolicyProvider(true);
         jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnCancelarActionPerformed(evt);
@@ -132,6 +137,7 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
 
         jBtnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/pesquisar.png"))); // NOI18N
         jBtnPesquisar.setText("Pesquisar");
+        jBtnPesquisar.setFocusTraversalPolicyProvider(true);
         jBtnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnPesquisarActionPerformed(evt);
@@ -139,19 +145,23 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
         });
 
         jLblCodigo.setText("Código");
+        jLblCodigo.setFocusTraversalPolicyProvider(true);
 
-        jTxtCodigo.setForeground(new java.awt.Color(255, 255, 255));
         jTxtCodigo.setCaretColor(new java.awt.Color(102, 102, 102));
+        jTxtCodigo.setFocusTraversalPolicyProvider(true);
 
         jLblNome.setText("Nome");
+        jLblNome.setFocusTraversalPolicyProvider(true);
 
-        jTxtNome.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtNome.setFocusTraversalPolicyProvider(true);
 
         jLblCpf.setText("Cpf");
+        jLblCpf.setFocusTraversalPolicyProvider(true);
 
         jLblDataNascimento.setText("Data de Nascimento");
+        jLblDataNascimento.setFocusTraversalPolicyProvider(true);
 
-        jFmtCpf.setForeground(new java.awt.Color(255, 255, 255));
+        jFmtCpf.setFocusTraversalPolicyProvider(true);
         jFmtCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFmtCpfActionPerformed(evt);
@@ -159,12 +169,14 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
         });
 
         jLblSenha.setText("Senha");
+        jLblSenha.setFocusTraversalPolicyProvider(true);
 
-        jPwdSenha.setForeground(new java.awt.Color(255, 255, 255));
+        jPwdSenha.setFocusTraversalPolicyProvider(true);
 
         jLblRg.setText("Rg");
+        jLblRg.setFocusTraversalPolicyProvider(true);
 
-        jTxtRg.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtRg.setFocusTraversalPolicyProvider(true);
         jTxtRg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtRgActionPerformed(evt);
@@ -172,14 +184,16 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
         });
 
         jLblTelefone.setText("Telefone");
+        jLblTelefone.setFocusTraversalPolicyProvider(true);
 
         jLblEmail.setText("Email");
+        jLblEmail.setFocusTraversalPolicyProvider(true);
 
-        jTxtEmail.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtEmail.setFocusTraversalPolicyProvider(true);
 
-        jTxtBairro.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtBairro.setFocusTraversalPolicyProvider(true);
 
-        jTxtCidade.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtCidade.setFocusTraversalPolicyProvider(true);
         jTxtCidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtCidadeActionPerformed(evt);
@@ -187,12 +201,15 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
         });
 
         jLblBairro.setText("Bairro");
+        jLblBairro.setFocusTraversalPolicyProvider(true);
 
         jLblCidade.setText("Cidade");
+        jLblCidade.setFocusTraversalPolicyProvider(true);
 
         jLblDataCadastro.setText("Data de Cadastro");
+        jLblDataCadastro.setFocusTraversalPolicyProvider(true);
 
-        jTxtEndereco.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtEndereco.setFocusTraversalPolicyProvider(true);
         jTxtEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtEnderecoActionPerformed(evt);
@@ -200,8 +217,9 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
         });
 
         jLblEndereco.setText("Endereço");
+        jLblEndereco.setFocusTraversalPolicyProvider(true);
 
-        jTxtNumero.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtNumero.setFocusTraversalPolicyProvider(true);
         jTxtNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTxtNumeroActionPerformed(evt);
@@ -209,12 +227,15 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
         });
 
         jLblNumero.setText("Número");
+        jLblNumero.setFocusTraversalPolicyProvider(true);
 
         jLblCep.setText("Cep");
+        jLblCep.setFocusTraversalPolicyProvider(true);
 
-        jTxtCep.setForeground(new java.awt.Color(255, 255, 255));
+        jTxtCep.setFocusTraversalPolicyProvider(true);
 
         jChbAtivo.setForeground(new java.awt.Color(255, 255, 255));
+        jChbAtivo.setFocusTraversalPolicyProvider(true);
         jChbAtivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jChbAtivoActionPerformed(evt);
@@ -222,22 +243,23 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
         });
 
         jLblNumero1.setText("Ativo");
+        jLblNumero1.setFocusTraversalPolicyProvider(true);
 
-        jFmtDataCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        jFmtDataCadastro.setFocusTraversalPolicyProvider(true);
         jFmtDataCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFmtDataCadastroActionPerformed(evt);
             }
         });
 
-        jFmtDataNascimento.setForeground(new java.awt.Color(255, 255, 255));
+        jFmtDataNascimento.setFocusTraversalPolicyProvider(true);
         jFmtDataNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFmtDataNascimentoActionPerformed(evt);
             }
         });
 
-        jFmtTelefone.setForeground(new java.awt.Color(255, 255, 255));
+        jFmtTelefone.setFocusTraversalPolicyProvider(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
