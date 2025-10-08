@@ -5,6 +5,9 @@
  */
 package view;
 
+import bean.DhmUsuarios;
+import dao.UsuariosDAO;
+import java.text.ParseException;
 import tools.Util;
 
 /**
@@ -23,6 +26,37 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
     }
+    
+public void beanView(DhmUsuarios usuarios) {
+    jTxtCodigo.setText(Util.intToStr(usuarios.getDhmIdUsuario()));
+    jTxtNome.setText(usuarios.getDhmNome());
+    jTxtApelido.setText(usuarios.getDhmApelido());
+    jFmtCpf.setText(usuarios.getDhmCpf());
+    jFmtDataDeNascimento.setText(Util.dateToStr(usuarios.getDhmDataNascimento()));
+    jCboNivel.setSelectedIndex(usuarios.getDhmNivel());
+    jChbAtivo.setSelected(usuarios.getDhmAtivo().equals("S"));
+}
+
+public DhmUsuarios viewBean(){
+    DhmUsuarios usuarios = new DhmUsuarios();
+
+    int codigo = Util.strToInt(jTxtCodigo.getText());
+    usuarios.setDhmIdUsuario(codigo);
+    usuarios.setDhmNome(jTxtNome.getText());
+    usuarios.setDhmApelido(jTxtApelido.getText());
+    usuarios.setDhmCpf(jFmtCpf.getText());
+    usuarios.setDhmDataNascimento(Util.strToDate(jFmtDataDeNascimento.getText()));
+    usuarios.setDhmSenha(jPwdSenha.getText()); 
+    usuarios.setDhmNivel(jCboNivel.getSelectedIndex());
+    
+    if (jChbAtivo.isSelected()) {
+        usuarios.setDhmAtivo("S");
+    } else {
+        usuarios.setDhmAtivo("N");
+    }
+
+    return usuarios;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -276,6 +310,11 @@ public class JDlgUsuarios extends javax.swing.JDialog {
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
+    UsuariosDAO usuariosDAO = new UsuariosDAO();
+usuariosDAO.insert(viewBean());
+
+
+        
         Util.habilitar(false, jTxtCodigo, jTxtNome, jFmtCpf,
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
 
@@ -290,7 +329,7 @@ public class JDlgUsuarios extends javax.swing.JDialog {
         // TODO add your handling code here: 
 
         JDlgUsuariosPesquisar jDlgUsuariosPesquisar = new JDlgUsuariosPesquisar(null, true);
-        jDlgUsuariosPesquisar.setJDlgUsuarios(this);
+        jDlgUsuariosPesquisar.setTelaAnterior(this);
         jDlgUsuariosPesquisar.setVisible(true);
 
     }//GEN-LAST:event_jBtnPesquisarActionPerformed

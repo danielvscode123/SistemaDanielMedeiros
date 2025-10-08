@@ -22,19 +22,19 @@ import javax.persistence.TemporalType;
 public class DhmUsuarios  implements java.io.Serializable {
 
 
-     private Integer dhmIdUsuario;
+     private int dhmIdUsuario;
      private String dhmNome;
      private Date dhmDataNascimento;
      private String dhmApelido;
      private String dhmSenha;
      private String dhmCpf;
-     private Integer dhmNivel;
-     private Character dhmAtivo;
+     private int dhmNivel;
+     private String dhmAtivo;
 
     public DhmUsuarios() {
     }
 
-    public DhmUsuarios(String dhmNome, Date dhmDataNascimento, String dhmApelido, String dhmSenha, String dhmCpf, Integer dhmNivel, Character dhmAtivo) {
+    public DhmUsuarios(String dhmNome, Date dhmDataNascimento, String dhmApelido, String dhmSenha, String dhmCpf, int dhmNivel, String dhmAtivo) {
        this.dhmNome = dhmNome;
        this.dhmDataNascimento = dhmDataNascimento;
        this.dhmApelido = dhmApelido;
@@ -48,11 +48,11 @@ public class DhmUsuarios  implements java.io.Serializable {
 
     
     @Column(name="dhm_idUsuario", unique=true, nullable=false)
-    public Integer getDhmIdUsuario() {
+    public int getDhmIdUsuario() {
         return this.dhmIdUsuario;
     }
     
-    public void setDhmIdUsuario(Integer dhmIdUsuario) {
+    public void setDhmIdUsuario(int dhmIdUsuario) {
         this.dhmIdUsuario = dhmIdUsuario;
     }
 
@@ -108,21 +108,21 @@ public class DhmUsuarios  implements java.io.Serializable {
 
     
     @Column(name="dhm_Nivel")
-    public Integer getDhmNivel() {
+    public int getDhmNivel() {
         return this.dhmNivel;
     }
     
-    public void setDhmNivel(Integer dhmNivel) {
+    public void setDhmNivel(int dhmNivel) {
         this.dhmNivel = dhmNivel;
     }
 
     
     @Column(name="dhm_Ativo", length=1)
-    public Character getDhmAtivo() {
+    public String getDhmAtivo() {
         return this.dhmAtivo;
     }
     
-    public void setDhmAtivo(Character dhmAtivo) {
+    public void setDhmAtivo(String dhmAtivo) {
         this.dhmAtivo = dhmAtivo;
     }
 

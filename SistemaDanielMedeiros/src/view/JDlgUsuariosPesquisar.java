@@ -1,28 +1,36 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
+
+import bean.DhmUsuarios;
+import dao.UsuariosDAO;
+import java.util.List;
+import view.JDlgUsuarios;
 
 /**
  *
- * @author Arte Porã
+ * @author Marcos
  */
 public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
-JDlgUsuarios jDlgUsuarios;
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
+    private JDlgUsuarios jDlgUsuarios;
+    ControllerUsuarios controllerUsuarios;
+
     public JDlgUsuariosPesquisar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-            setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
+        setTitle("Pesquisar Usuários");
+        controllerUsuarios = new ControllerUsuarios();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        List lista = (List) usuariosDAO.listAll();
+        controllerUsuarios.setList(lista);
+        jTable1.setModel(controllerUsuarios);
     }
 
-        public void setJDlgUsuarios(JDlgUsuarios jDlgUsuarios){
-    this.jDlgUsuarios = jDlgUsuarios;
+    public void setTelaAnterior(JDlgUsuarios jDlgUsuarios) {
+        this.jDlgUsuarios = jDlgUsuarios;
     }
 
     /**
@@ -84,8 +92,9 @@ JDlgUsuarios jDlgUsuarios;
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
-
-       setVisible(false);
+   DhmUsuarios usuarios = controllerUsuarios.getBean(jTable1.getSelectedRow());
+        jDlgUsuarios.beanView(usuarios);
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**

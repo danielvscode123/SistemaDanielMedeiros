@@ -61,15 +61,17 @@ public class Util {
 
     }
 
-    public static Date strToDate(String data) throws ParseException {
-        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
-        return formatar.parse(data); 
+
+    public static Date strToDate(String data){
+        return null;
+
     }
 
-    public static String dateToStr(Date data) {
-        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
-        return formatar.format(data);  
+   public static String dateToStr(Date data) {
+        return "";
+ 
     }
+
 }
 
 

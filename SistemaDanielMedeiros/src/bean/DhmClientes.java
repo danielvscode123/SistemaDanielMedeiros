@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 public class DhmClientes  implements java.io.Serializable {
 
 
-     private Integer dhmIdCliente;
+     private int dhmIdCliente;
      private String dhmNome;
      private String dhmEmail;
      private String dhmBairro;
@@ -39,14 +39,14 @@ public class DhmClientes  implements java.io.Serializable {
      private Date dhmDataNascimento;
      private Date dhmDataCadastro;
      private String dhmSenha;
-     private Character dhmAtivo;
+     private String dhmAtivo;
      private String dhmNumero;
    
 
     public DhmClientes() {
     }
 
-    public DhmClientes(String dhmNome, String dhmEmail, String dhmBairro, String dhmTelefone, String dhmCidade, String dhmCep, String dhmRg, String dhmEndereco, String dhmCpf, Date dhmDataNascimento, Date dhmDataCadastro, String dhmSenha, Character dhmAtivo, String dhmNumero) {
+    public DhmClientes(String dhmNome, String dhmEmail, String dhmBairro, String dhmTelefone, String dhmCidade, String dhmCep, String dhmRg, String dhmEndereco, String dhmCpf, Date dhmDataNascimento, Date dhmDataCadastro, String dhmSenha, String dhmAtivo, String dhmNumero) {
        this.dhmNome = dhmNome;
        this.dhmEmail = dhmEmail;
        this.dhmBairro = dhmBairro;
@@ -68,11 +68,11 @@ public class DhmClientes  implements java.io.Serializable {
 
     
     @Column(name="dhm_idCliente", unique=true, nullable=false)
-    public Integer getDhmIdCliente() {
+    public int getDhmIdCliente() {
         return this.dhmIdCliente;
     }
     
-    public void setDhmIdCliente(Integer dhmIdCliente) {
+    public void setDhmIdCliente(int dhmIdCliente) {
         this.dhmIdCliente = dhmIdCliente;
     }
 
@@ -198,11 +198,11 @@ public class DhmClientes  implements java.io.Serializable {
 
     
     @Column(name="dhm_ativo", length=1)
-    public Character getDhmAtivo() {
+    public String getDhmAtivo() {
         return this.dhmAtivo;
     }
     
-    public void setDhmAtivo(Character dhmAtivo) {
+    public void setDhmAtivo(String dhmAtivo) {
         this.dhmAtivo = dhmAtivo;
     }
 
