@@ -19,8 +19,17 @@ public class UsuariosDAO extends AbstractDAO{
     @Override
     public void insert(Object object) {
 session.beginTransaction();
-session.save(object);
-session.getTransaction().commit();
+    
+    // FORÇA o ID que está no objeto (solução para seu problema)
+    if (object instanceof DhmUsuarios) {
+        DhmUsuarios usuario = (DhmUsuarios) object;
+        // Usa merge() em vez de save() para forçar o ID
+        session.merge(object);
+    } else {
+        session.save(object);
+    }
+    
+    session.getTransaction().commit();
     }
 
     @Override
@@ -40,16 +49,16 @@ session.delete(object);
 session.getTransaction().commit();   
     }
 
-    @Override
-    public Object list(int codigo) {
-  session.beginTransaction();
-  Criteria criteria = session.createCriteria(DhmUsuarios.class);
-  criteria.add(Restrictions.eq("idusuarios", codigo));
-  List lista = criteria.list();
-  session.getTransaction().commit();
- return lista;
-          
-    }
+   @Override
+public Object list(int codigo) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(DhmUsuarios.class);
+    // CORREÇÃO: Mudar "idusuarios" para "dhmIdUsuario"
+    criteria.add(Restrictions.eq("dhmIdUsuario", codigo));
+    List lista = criteria.list();
+    session.getTransaction().commit();
+    return lista;
+}
 
     @Override
     public Object listAll() {
@@ -63,5 +72,21 @@ session.beginTransaction();
         UsuariosDAO usuariosDAO = new UsuariosDAO();
         usuariosDAO.listAll();
     }
+    
+    
+    
+    
+
+public List<DhmUsuarios> listByName(String nome) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(DhmUsuarios.class);
+    criteria.add(Restrictions.ilike("dhmNome", "%" + nome + "%"));
+    List lista = criteria.list();
+    session.getTransaction().commit();
+    return lista;
+}
+
+
+
     
 }

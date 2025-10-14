@@ -39,10 +39,9 @@ public class Util {
     }
 
     public static boolean perguntar(String cad) {
-        JOptionPane.showConfirmDialog(null, cad);
-        return true;
-    }
-
+    int resposta = JOptionPane.showConfirmDialog(null, cad, "Confirmação", JOptionPane.YES_NO_OPTION);
+    return (resposta == JOptionPane.YES_OPTION);
+}
     public static int strToInt(String num) {
         return Integer.parseInt(num);
     }

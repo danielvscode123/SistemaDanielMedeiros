@@ -287,7 +287,7 @@ public DhmUsuarios viewBean(){
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
 
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,
+        Util.limpar(jTxtCodigo, jTxtNome,jTxtApelido, jFmtCpf,
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
@@ -298,13 +298,19 @@ public DhmUsuarios viewBean(){
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
 
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,
-                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
+       
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        // TODO add your handling code here:
-        Util.perguntar("Deseja mesmo Excluir?");
+            // TODO add your handling code here:
+    
+    if (Util.perguntar("Deseja mesmo Excluir?")) {
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        usuariosDAO.delete(viewBean());
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtApelido,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
+        Util.mensagem("Usuário excluído com sucesso!");
+    }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
 
@@ -319,7 +325,7 @@ usuariosDAO.insert(viewBean());
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
 
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,
+      Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,jTxtApelido,
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
 
