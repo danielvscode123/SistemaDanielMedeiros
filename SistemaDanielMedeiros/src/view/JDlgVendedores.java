@@ -6,6 +6,7 @@
 package view;
 
 import bean.DhmVendedor;
+import dao.VendedoresDAO;
 import tools.Util;
 
 
@@ -268,37 +269,39 @@ public DhmVendedor viewBean() {
 
     private void jBtnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnIncluirActionPerformed
         // TODO add your handling code here:
-  Util.habilitar(true,jTxtEmail,jTxtNome,jFmtCpf,
-   jTxtCodigo,jBtnConfirmar, jBtnCancelar, jFmtTelefone, jTxtSalario);
-        Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-         Util.limpar(jTxtEmail,jTxtNome,jFmtCpf,
-   jTxtCodigo,jFmtTelefone, jTxtSalario);
+     Util.habilitar(true, jTxtEmail, jTxtNome, jFmtCpf, jTxtCodigo, 
+            jBtnConfirmar, jBtnCancelar, jFmtTelefone, jTxtSalario);
+    Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+    Util.limpar(jTxtEmail, jTxtNome, jFmtCpf, jTxtCodigo, jFmtTelefone, jTxtSalario);
 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-  Util.habilitar(true,jTxtEmail,jTxtNome,jFmtCpf
-          ,jBtnConfirmar, jBtnCancelar, jFmtTelefone, jTxtSalario);
-      
-        Util.habilitar(false,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtEmail,jTxtNome,jFmtCpf,
-   jTxtCodigo,jFmtTelefone, jTxtSalario);
+   Util.habilitar(true, jTxtEmail, jTxtNome, jFmtCpf, jBtnConfirmar, 
+            jBtnCancelar, jFmtTelefone, jTxtSalario);
+    Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        // TODO add your handling code here:
-Util.perguntar("Deseja mesmo Excluir?");
+          if (Util.perguntar("Deseja mesmo Excluir?")) {
+        VendedoresDAO vendedoresDAO = new VendedoresDAO();
+        vendedoresDAO.delete(viewBean());
+        Util.limpar(jTxtEmail, jTxtNome, jFmtCpf, jTxtCodigo, jFmtTelefone, jTxtSalario);
+        Util.mensagem("Vendedor excluído com sucesso!");
+    }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-        // TODO add your handling code here:
-  Util.habilitar(false,jTxtEmail,jTxtNome,jFmtCpf,
-   jTxtCodigo,jBtnConfirmar, jBtnCancelar, jFmtTelefone, jTxtSalario);
-        Util.habilitar(true,jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-       Util.limpar(jTxtEmail,jTxtNome,jFmtCpf,
-   jTxtCodigo,jFmtTelefone, jTxtSalario);
+         VendedoresDAO vendedoresDAO = new VendedoresDAO();
+    vendedoresDAO.insert(viewBean());
+
+    Util.habilitar(false, jTxtEmail, jTxtNome, jFmtCpf, jTxtCodigo, 
+            jBtnConfirmar, jBtnCancelar, jFmtTelefone, jTxtSalario);
+    Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+    Util.limpar(jTxtEmail, jTxtNome, jFmtCpf, jTxtCodigo, jFmtTelefone, jTxtSalario);
+  
 
 
     }//GEN-LAST:event_jBtnConfirmarActionPerformed
