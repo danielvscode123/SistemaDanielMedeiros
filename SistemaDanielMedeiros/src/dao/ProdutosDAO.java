@@ -5,7 +5,7 @@
  */
 package dao;
 
-import bean.DhmUsuarios;
+import bean.DhmProdutos;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -14,7 +14,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author u07887987156
  */
-public class UsuariosDAO extends AbstractDAO{
+public class ProdutosDAO extends AbstractDAO{
 
     @Override
     public void insert(Object object) {
@@ -41,26 +41,25 @@ session.getTransaction().commit();
     }
 
     @Override
-    public Object list(int codigo) {
-  session.beginTransaction();
-  Criteria criteria = session.createCriteria(DhmUsuarios.class);
-  criteria.add(Restrictions.eq("idusuarios", codigo));
-  List lista = criteria.list();
-  session.getTransaction().commit();
- return lista;
-          
-    }
+public Object list(int codigo) {
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(DhmProdutos.class);
+    criteria.add(Restrictions.eq("dhmIdProduto", codigo));
+    Object produto = criteria.uniqueResult();
+    session.getTransaction().commit();
+    return produto;
+}
 
     @Override
     public Object listAll() {
 session.beginTransaction();
-  Criteria criteria = session.createCriteria(DhmUsuarios.class);
+  Criteria criteria = session.createCriteria(DhmProdutos.class);
   List lista = criteria.list();
   session.getTransaction().commit();
  return lista;
               }
     public static void main(String[] args) {
-        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        ProdutosDAO usuariosDAO = new ProdutosDAO();
         usuariosDAO.listAll();
     }
     

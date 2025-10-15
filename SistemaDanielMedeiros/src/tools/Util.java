@@ -4,6 +4,7 @@ package tools;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
@@ -30,7 +31,9 @@ public class Util {
             if (componentes[i] instanceof JComboBox) {
                 ((JComboBox) componentes[i]).setSelectedIndex(-1);
             }
-
+  if (componentes[i] instanceof JCheckBox) { // ← ADICIONE ESTE BLOCO
+            ((JCheckBox) componentes[i]).setSelected(false);
+        }
         }
     }
 
@@ -54,11 +57,10 @@ public class Util {
         return Double.parseDouble(cad); 
 
     }
-
-    public static String doubleToStr(double num) {
-        return String.valueOf(num); 
-
-    }
+public static String doubleToStr(double num) {
+    return String.valueOf(num); 
+    
+}
 
 
     public static Date strToDate(String data){

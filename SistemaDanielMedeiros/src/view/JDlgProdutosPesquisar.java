@@ -5,6 +5,10 @@
  */
 package view;
 
+import bean.DhmProdutos;
+import dao.ProdutosDAO;
+import java.util.List;
+
 /**
  *
  * @author Arte Porã
@@ -12,6 +16,7 @@ package view;
 public class JDlgProdutosPesquisar extends javax.swing.JDialog {
 
 JDlgProdutos jDlgProdutos;
+    ControllerProdutos controllerProdutos;
     /**
      * Creates new form JDlgProdutosPesquisar
      */
@@ -19,6 +24,13 @@ JDlgProdutos jDlgProdutos;
         super(parent, modal);
         initComponents();
             setLocationRelativeTo(null);
+      setTitle("Pesquisar Usuários");
+        controllerProdutos = new ControllerProdutos();
+        ProdutosDAO produtosDAO = new ProdutosDAO();
+        List lista = (List) produtosDAO.listAll();
+        controllerProdutos.setList(lista);
+        jTable1.setModel(controllerProdutos);
+    
     }
 
         public void setJDlgProdutos(JDlgProdutos jDlgProdutos){
@@ -83,9 +95,9 @@ JDlgProdutos jDlgProdutos;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-        // TODO add your handling code here:
-
-       setVisible(false);
+   DhmProdutos produtos = controllerProdutos.getBean(jTable1.getSelectedRow());
+        jDlgProdutos.beanView(produtos);
+        this.setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**

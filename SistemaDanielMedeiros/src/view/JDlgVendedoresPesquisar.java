@@ -5,6 +5,10 @@
  */
 package view;
 
+import bean.DhmVendedor;
+import dao.VendedoresDAO;
+import java.util.List;
+
 /**
  *
  * @author Arte Porã
@@ -12,13 +16,20 @@ package view;
 public class JDlgVendedoresPesquisar extends javax.swing.JDialog {
 
 JDlgVendedores jDlgVendedores;
-    /**
+ControllerVendedores controllerVendedores;    
+/**
      * Creates new form JDlgVendedoresPesquisar
      */
     public JDlgVendedoresPesquisar(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-            setLocationRelativeTo(null);
+          super(parent, modal);
+    initComponents();
+    setLocationRelativeTo(null);
+    setTitle("Pesquisar Vendedores"); // ← Corrigi o título
+    controllerVendedores = new ControllerVendedores();
+    VendedoresDAO vendedoresDAO = new VendedoresDAO();
+    List lista = (List) vendedoresDAO.listAll();
+    controllerVendedores.setList(lista);
+    jTable1.setModel(controllerVendedores); // ← Agora a tabela tem dados
     }
 
         public void setJDlgVendedores(JDlgVendedores jDlgVendedores){
@@ -83,9 +94,9 @@ JDlgVendedores jDlgVendedores;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-        // TODO add your handling code here:
-
-       setVisible(false);
+        DhmVendedor vendedor = controllerVendedores.getBean(jTable1.getSelectedRow());
+    jDlgVendedores.beanView(vendedor);
+    this.setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     /**

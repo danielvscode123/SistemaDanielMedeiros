@@ -5,6 +5,7 @@
  */
 package view;
 
+import bean.DhmVendedor;
 import tools.Util;
 
 
@@ -29,7 +30,27 @@ public class JDlgVendedores extends javax.swing.JDialog {
 
     }
     
+public void beanView(DhmVendedor vendedor) {
+    jTxtCodigo.setText(Util.intToStr(vendedor.getDhmIdVendedor()));
+    jTxtNome.setText(vendedor.getDhmNome());
+    jFmtCpf.setText(vendedor.getDhmCpf());
+    jTxtEmail.setText(vendedor.getDhmEmail());
+    jFmtTelefone.setText(vendedor.getDhmTelefone());
+    jTxtSalario.setText(Util.doubleToStr(vendedor.getDhmSalario()));
+}
 
+public DhmVendedor viewBean() {
+    DhmVendedor vendedor = new DhmVendedor();
+
+    vendedor.setDhmIdVendedor(Util.strToInt(jTxtCodigo.getText()));
+    vendedor.setDhmNome(jTxtNome.getText());
+    vendedor.setDhmCpf(jFmtCpf.getText());
+    vendedor.setDhmEmail(jTxtEmail.getText());
+    vendedor.setDhmTelefone(jFmtTelefone.getText());
+    vendedor.setDhmSalario(Util.strToDouble(jTxtSalario.getText()));
+
+    return vendedor;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

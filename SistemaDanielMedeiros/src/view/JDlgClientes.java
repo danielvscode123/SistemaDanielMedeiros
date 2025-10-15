@@ -4,13 +4,9 @@
  */
 package view;
 
-
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import bean.DhmClientes;
+import dao.ClientesDAO;
 import tools.Util;
-
 
 /**
  *
@@ -24,23 +20,67 @@ public class JDlgClientes extends javax.swing.JDialog {
     
 
     public JDlgClientes(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+         super(parent, modal);
         initComponents();
-        setTitle("Cadastros de Clientes");
+        setTitle("Cadastro de Clientes");
         setLocationRelativeTo(null);
-  Util.habilitar(false, jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidade,
-          jTxtCep, jTxtRg, jTxtEndereco, jFmtCpf, jFmtDataNascimento, jFmtDataCadastro, 
-          jPwdSenha, jTxtNumero, jChbAtivo, jBtnConfirmar, jBtnCancelar);
-
-Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidade,
-        jTxtCep, jTxtRg, jTxtEndereco, jFmtCpf, jFmtDataNascimento, jFmtDataCadastro, 
-        jPwdSenha, jTxtNumero, jChbAtivo);
-
-     
+        Util.habilitar(false, jTxtCodigo, jTxtNome, jFmtCpf, jTxtEmail, 
+                jFmtTelefone, jTxtEndereco, jTxtNumero, jTxtBairro, jTxtCidade, 
+                jTxtCep, jFmtDataNascimento, jFmtDataCadastro, jPwdSenha, jTxtRg, 
+                jChbAtivo, jBtnConfirmar, jBtnCancelar);
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtEmail, jFmtTelefone, 
+                jTxtEndereco, jTxtNumero, jTxtBairro, jTxtCidade, jTxtCep, 
+                jFmtDataNascimento, jFmtDataCadastro, jPwdSenha, jChbAtivo);
     }
 
    
     
+      public void beanView(DhmClientes clientes) {
+        jTxtCodigo.setText(Util.intToStr(clientes.getDhmIdCliente()));
+        jTxtNome.setText(clientes.getDhmNome());
+        jFmtCpf.setText(clientes.getDhmCpf());
+        jTxtEmail.setText(clientes.getDhmEmail());
+        jFmtTelefone.setText(clientes.getDhmTelefone());
+        jTxtEndereco.setText(clientes.getDhmEndereco());
+        jTxtNumero.setText(clientes.getDhmNumero());
+        jTxtBairro.setText(clientes.getDhmBairro());
+        jTxtCidade.setText(clientes.getDhmCidade());
+        jTxtCep.setText(clientes.getDhmCep());
+        jFmtDataNascimento.setText(Util.dateToStr(clientes.getDhmDataNascimento()));
+        jFmtDataCadastro.setText(Util.dateToStr(clientes.getDhmDataCadastro()));
+        jPwdSenha.setText(clientes.getDhmSenha());
+        jTxtRg.setText(clientes.getDhmRg());
+ 
+   jChbAtivo.setSelected(clientes.getDhmAtivo().equals("S"));
+    }
+      
+      
+      public DhmClientes viewBean() {
+    DhmClientes clientes = new DhmClientes();   
+    clientes.setDhmIdCliente(Util.strToInt(jTxtCodigo.getText()));
+    clientes.setDhmNome(jTxtNome.getText());
+    clientes.setDhmCpf(jFmtCpf.getText());
+    clientes.setDhmEmail(jTxtEmail.getText());
+    clientes.setDhmTelefone(jFmtTelefone.getText()); 
+    clientes.setDhmEndereco(jTxtEndereco.getText());
+    clientes.setDhmNumero(jTxtNumero.getText());
+    clientes.setDhmBairro(jTxtBairro.getText());
+    clientes.setDhmCidade(jTxtCidade.getText());
+    clientes.setDhmCep(jTxtCep.getText()); 
+    clientes.setDhmDataNascimento(Util.strToDate(jFmtDataNascimento.getText()));
+    clientes.setDhmDataCadastro(Util.strToDate(jFmtDataCadastro.getText()));
+    clientes.setDhmSenha(jPwdSenha.getText());
+    clientes.setDhmRg(jTxtRg.getText());
+  
+    
+    if (jChbAtivo.isSelected()) {
+        clientes.setDhmAtivo("S");
+    } else {
+        clientes.setDhmAtivo("N");
+    }
+
+    return clientes;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -445,7 +485,12 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
     }//GEN-LAST:event_jBtnIncluirActionPerformed
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-    Util.habilitar(false, jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidade,
+    
+            ClientesDAO clientesDAO = new ClientesDAO();
+        clientesDAO.insert(viewBean());
+
+        
+        Util.habilitar(false, jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidade,
           jTxtCep, jTxtRg, jTxtEndereco, jFmtCpf, jFmtDataNascimento, jFmtDataCadastro, 
           jPwdSenha, jTxtNumero, jChbAtivo, jBtnConfirmar, jBtnCancelar);
 
@@ -500,7 +545,14 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-Util.perguntar("Tem certeza que deseja excluir?");
+        if (Util.perguntar("Deseja mesmo Excluir?")) {
+            ClientesDAO clientesDAO = new ClientesDAO();
+            clientesDAO.delete(viewBean());
+            Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtEmail, jFmtTelefone, 
+                    jTxtEndereco, jTxtNumero, jTxtBairro, jTxtCidade, jTxtCep, 
+                    jFmtDataNascimento, jFmtDataCadastro, jPwdSenha, jChbAtivo);
+            Util.mensagem("Cliente excluído com sucesso!");
+        }
 
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 

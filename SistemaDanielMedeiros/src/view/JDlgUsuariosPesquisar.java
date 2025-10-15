@@ -30,10 +30,7 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         List lista = (List) usuariosDAO.listAll();
         controllerUsuarios.setList(lista);
         jTable1.setModel(controllerUsuarios);
-        
-    adicionarPesquisaDinamica();
-
-
+    
     }
 
     public void setTelaAnterior(JDlgUsuarios jDlgUsuarios) {
@@ -130,42 +127,6 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
     private void jTextFieldSearchNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSearchNameActionPerformed
-
-    
-    private void adicionarPesquisaDinamica() {
-    jTextFieldSearchName.getDocument().addDocumentListener(new DocumentListener() {
-        @Override
-        public void insertUpdate(DocumentEvent e) {
-            pesquisar();
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent e) {
-            pesquisar();
-        }
-
-        @Override
-        public void changedUpdate(DocumentEvent e) {
-            pesquisar();
-        }
-    });
-}
-
-private void pesquisar() {
-    String nome = jTextFieldSearchName.getText();
-    UsuariosDAO dao = new UsuariosDAO();
-    List<DhmUsuarios> lista = dao.listByName(nome);
-    preencherTabela(lista);
-}
-
-private void preencherTabela(List<DhmUsuarios> lista) {
-    ControllerUsuarios controllerUsuarios = new ControllerUsuarios();
-    controllerUsuarios.setList(lista);
-    jTable1.setModel(controllerUsuarios);
-}
-
-
-
 
     
     /**
