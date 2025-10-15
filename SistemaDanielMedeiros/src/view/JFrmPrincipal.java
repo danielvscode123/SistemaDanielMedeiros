@@ -165,7 +165,8 @@ jDlgProdutos.setVisible(true);
     }//GEN-LAST:event_jMnuProdutosActionPerformed
 
     private void jMnuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuPedidosActionPerformed
-   
+   JDlgVendas jDlgVendas = new JDlgVendas(this, true);
+jDlgVendas.setVisible(true);
     }//GEN-LAST:event_jMnuPedidosActionPerformed
 
     private void jMnuVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuVendedoresActionPerformed

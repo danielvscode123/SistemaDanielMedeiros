@@ -2,10 +2,12 @@ package view;
 
 import bean.DhmUsuarios;
 import dao.UsuariosDAO;
+import view.JDlgUsuarios;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -26,12 +28,12 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         setTitle("Pesquisar Usuários");
         controllerUsuarios = new ControllerUsuarios();
         
-        // Carrega dados iniciais
         carregarDados();
         jTable1.setModel(controllerUsuarios);
         
-        // Adiciona o listener de pesquisa
         adicionarListenerPesquisa();
+        
+        
     
     }
 
@@ -42,33 +44,31 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         controllerUsuarios.setList(lista);
     }
 
-    private void adicionarListenerPesquisa() {
-        jTextFieldSearchName.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                filtrarPorNome();
-            }
-            
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                filtrarPorNome();
-            }
-            
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                filtrarPorNome();
-            }
-        });
-    }
+  private void adicionarListenerPesquisa() {
+    jTextFieldSearchName.getDocument().addDocumentListener(new DocumentListener() {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            SwingUtilities.invokeLater(() -> filtrarPorNome());
+        }
+        
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            SwingUtilities.invokeLater(() -> filtrarPorNome());
+        }
+        
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            SwingUtilities.invokeLater(() -> filtrarPorNome());
+        }
+    });
+}
 
     private void filtrarPorNome() {
         String nomePesquisa = jTextFieldSearchName.getText().toLowerCase().trim();
         
-        if (nomePesquisa.isEmpty()) {
-            // Se campo vazio, mostra todos
+        if (nomePesquisa.isEmpty()) {    
             carregarDados();
         } else {
-            // Filtra por nome
             UsuariosDAO usuariosDAO = new UsuariosDAO();
             List listaCompleta = (List) usuariosDAO.listAll();
             List listaFiltrada = new ArrayList();

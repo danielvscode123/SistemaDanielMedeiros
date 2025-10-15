@@ -17,7 +17,7 @@ public class JDlgClientes extends javax.swing.JDialog {
     /**
      * Creates new form JDlgClientes
      */
-    
+          private boolean incluir = true;
 
     public JDlgClientes(java.awt.Frame parent, boolean modal) {
          super(parent, modal);
@@ -486,9 +486,13 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
     
-            ClientesDAO clientesDAO = new ClientesDAO();
-        clientesDAO.insert(viewBean());
-
+       ClientesDAO clientesDAO = new ClientesDAO();
+  DhmClientes cliente = viewBean();
+if (incluir) {
+        clientesDAO.insert(cliente);
+    } else {
+        clientesDAO.update(cliente);
+    }
         
         Util.habilitar(false, jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidade,
           jTxtCep, jTxtRg, jTxtEndereco, jFmtCpf, jFmtDataNascimento, jFmtDataCadastro, 
@@ -549,7 +553,7 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
             ClientesDAO clientesDAO = new ClientesDAO();
             clientesDAO.delete(viewBean());
             Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtEmail, jFmtTelefone, 
-                    jTxtEndereco, jTxtNumero, jTxtBairro, jTxtCidade, jTxtCep, 
+                    jTxtEndereco, jTxtNumero ,jTxtRg, jTxtBairro, jTxtCidade, jTxtCep, 
                     jFmtDataNascimento, jFmtDataCadastro, jPwdSenha, jChbAtivo);
             Util.mensagem("Cliente excluído com sucesso!");
         }

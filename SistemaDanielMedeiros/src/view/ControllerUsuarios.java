@@ -22,6 +22,7 @@ public class ControllerUsuarios extends AbstractTableModel {
 
     public void setList(List DhmUsuarios) {
         this.DhmUsuarios = DhmUsuarios;
+           fireTableDataChanged();
     }
     
     public DhmUsuarios getBean(int rowIndex) {

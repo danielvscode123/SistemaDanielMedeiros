@@ -17,7 +17,7 @@ import tools.Util;
 public class JDlgVendedores extends javax.swing.JDialog {
 
 
-
+      private boolean incluir = true;
 
     public JDlgVendedores(java.awt.Frame parent, boolean modal) {
       super(parent, modal);
@@ -294,9 +294,13 @@ public DhmVendedor viewBean() {
 
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
-         VendedoresDAO vendedoresDAO = new VendedoresDAO();
-    vendedoresDAO.insert(viewBean());
-
+       VendedoresDAO vendedoresDAO = new VendedoresDAO();
+  DhmVendedor vendedor = viewBean();
+if (incluir) {
+        vendedoresDAO.insert(vendedor);
+    } else {
+        vendedoresDAO.update(vendedor);
+    }
     Util.habilitar(false, jTxtEmail, jTxtNome, jFmtCpf, jTxtCodigo, 
             jBtnConfirmar, jBtnCancelar, jFmtTelefone, jTxtSalario);
     Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);

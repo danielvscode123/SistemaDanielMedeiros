@@ -15,6 +15,8 @@ import tools.Util;
  */
 public class JDlgProdutos extends javax.swing.JDialog {
 
+          private boolean incluir = true;
+    
     public JDlgProdutos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -309,9 +311,13 @@ public DhmProdutos viewBean() {
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-        ProdutosDAO produtosDAO = new ProdutosDAO();
-        produtosDAO.insert(viewBean());
-
+      ProdutosDAO produtosDAO = new ProdutosDAO();
+  DhmProdutos produto = viewBean();
+if (incluir) {
+        produtosDAO.insert(produto);
+    } else {
+        produtosDAO.update(produto);
+    }
    Util.habilitar(false, jTxtCodigo, jTxtNome, jTxtDescricao, jTxtMarca, jTxtEstoque, jTxtPreco, jTxtCategoria, jBtnConfirmar, jBtnCancelar);
        Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
        Util.limpar(jTxtCodigo, jTxtNome, jTxtDescricao, jTxtMarca, jTxtEstoque, jTxtPreco, jTxtCategoria);
