@@ -2,11 +2,10 @@ package view;
 
 import bean.DhmUsuarios;
 import dao.UsuariosDAO;
+import java.util.ArrayList;
 import java.util.List;
-import view.JDlgUsuarios;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
 
 /**
  *
@@ -26,11 +25,63 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setTitle("Pesquisar Usuários");
         controllerUsuarios = new ControllerUsuarios();
+        
+        // Carrega dados iniciais
+        carregarDados();
+        jTable1.setModel(controllerUsuarios);
+        
+        // Adiciona o listener de pesquisa
+        adicionarListenerPesquisa();
+    
+    }
+
+    
+    private void carregarDados() {
         UsuariosDAO usuariosDAO = new UsuariosDAO();
         List lista = (List) usuariosDAO.listAll();
         controllerUsuarios.setList(lista);
-        jTable1.setModel(controllerUsuarios);
-    
+    }
+
+    private void adicionarListenerPesquisa() {
+        jTextFieldSearchName.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                filtrarPorNome();
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                filtrarPorNome();
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                filtrarPorNome();
+            }
+        });
+    }
+
+    private void filtrarPorNome() {
+        String nomePesquisa = jTextFieldSearchName.getText().toLowerCase().trim();
+        
+        if (nomePesquisa.isEmpty()) {
+            // Se campo vazio, mostra todos
+            carregarDados();
+        } else {
+            // Filtra por nome
+            UsuariosDAO usuariosDAO = new UsuariosDAO();
+            List listaCompleta = (List) usuariosDAO.listAll();
+            List listaFiltrada = new ArrayList();
+            
+            for (Object obj : listaCompleta) {
+                DhmUsuarios usuario = (DhmUsuarios) obj;
+                if (usuario.getDhmNome().toLowerCase().contains(nomePesquisa)) {
+                    listaFiltrada.add(usuario);
+                }
+            }
+            
+            controllerUsuarios.setList(listaFiltrada);
+        }
     }
 
     public void setTelaAnterior(JDlgUsuarios jDlgUsuarios) {
@@ -126,6 +177,7 @@ public class JDlgUsuariosPesquisar extends javax.swing.JDialog {
 
     private void jTextFieldSearchNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchNameActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jTextFieldSearchNameActionPerformed
 
     

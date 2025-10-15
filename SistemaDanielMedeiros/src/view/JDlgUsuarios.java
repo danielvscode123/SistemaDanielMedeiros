@@ -6,6 +6,7 @@
 package view;
 
 import bean.DhmUsuarios;
+import bean.DhmVendas;
 import dao.UsuariosDAO;
 import java.text.ParseException;
 import tools.Util;
@@ -16,6 +17,8 @@ import tools.Util;
  */
 public class JDlgUsuarios extends javax.swing.JDialog {
 
+      private boolean incluir = true;
+    
     public JDlgUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -31,6 +34,7 @@ public void beanView(DhmUsuarios usuarios) {
     jTxtCodigo.setText(Util.intToStr(usuarios.getDhmIdUsuario()));
     jTxtNome.setText(usuarios.getDhmNome());
     jTxtApelido.setText(usuarios.getDhmApelido());
+    jPwdSenha.setText(usuarios.getDhmSenha());
     jFmtCpf.setText(usuarios.getDhmCpf());
     jFmtDataDeNascimento.setText(Util.dateToStr(usuarios.getDhmDataNascimento()));
     jCboNivel.setSelectedIndex(usuarios.getDhmNivel());
@@ -294,10 +298,13 @@ public DhmUsuarios viewBean(){
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-        Util.habilitar(true, jTxtCodigo, jTxtNome, jFmtCpf,
+        Util.habilitar(true, jTxtNome, jFmtCpf,
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
 
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,jTxtApelido,
+                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
+
        
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
@@ -317,9 +324,12 @@ public DhmUsuarios viewBean(){
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
     UsuariosDAO usuariosDAO = new UsuariosDAO();
-usuariosDAO.insert(viewBean());
-
-
+  DhmUsuarios usuario = viewBean();
+if (incluir) {
+        usuariosDAO.insert(usuario);
+    } else {
+        usuariosDAO.update(usuario);
+    }
         
         Util.habilitar(false, jTxtCodigo, jTxtNome, jFmtCpf,
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);

@@ -34,8 +34,9 @@ public class DhmUsuarios  implements java.io.Serializable {
     public DhmUsuarios() {
     }
 
-    public DhmUsuarios(String dhmNome, Date dhmDataNascimento, String dhmApelido, String dhmSenha, String dhmCpf, int dhmNivel, String dhmAtivo) {
-       this.dhmNome = dhmNome;
+    public DhmUsuarios(int dhmIdUsuario,String dhmNome, Date dhmDataNascimento, String dhmApelido, String dhmSenha, String dhmCpf, int dhmNivel, String dhmAtivo) {
+       this.dhmIdUsuario = dhmIdUsuario;
+        this.dhmNome = dhmNome;
        this.dhmDataNascimento = dhmDataNascimento;
        this.dhmApelido = dhmApelido;
        this.dhmSenha = dhmSenha;

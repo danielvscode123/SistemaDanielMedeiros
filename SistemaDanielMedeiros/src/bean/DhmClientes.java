@@ -46,6 +46,11 @@ public class DhmClientes  implements java.io.Serializable {
     public DhmClientes() {
     }
 
+    
+        public DhmClientes(int dhmIdCliente) {
+this.dhmIdCliente = dhmIdCliente;
+        }
+
     public DhmClientes(String dhmNome, String dhmEmail, String dhmBairro, String dhmTelefone, String dhmCidade, String dhmCep, String dhmRg, String dhmEndereco, String dhmCpf, Date dhmDataNascimento, Date dhmDataCadastro, String dhmSenha, String dhmAtivo, String dhmNumero) {
        this.dhmNome = dhmNome;
        this.dhmEmail = dhmEmail;
@@ -217,7 +222,10 @@ public class DhmClientes  implements java.io.Serializable {
     }
 
 
-
+@Override
+    public String toString() {
+        return this.dhmNome;
+    }
 }
 
 

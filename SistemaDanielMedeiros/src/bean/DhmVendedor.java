@@ -35,14 +35,14 @@ public class DhmVendedor  implements java.io.Serializable {
 
     public DhmVendedor() {
     }
+ public DhmVendedor(int dhmIdVendedor) {
+this.dhmIdVendedor = dhmIdVendedor;
+        }
 
 	
-    public DhmVendedor(String dhmNome, String dhmCpf, double dhmSalario) {
-        this.dhmNome = dhmNome;
-        this.dhmCpf = dhmCpf;
-        this.dhmSalario = dhmSalario;
-    }
-    public DhmVendedor(String dhmNome, String dhmCpf, String dhmEmail, String dhmTelefone, double dhmSalario) {
+
+    public DhmVendedor(int dhmIdVendedor, String dhmNome, String dhmCpf, String dhmEmail, String dhmTelefone, double dhmSalario) {
+      this.dhmIdVendedor = dhmIdVendedor;
        this.dhmNome = dhmNome;
        this.dhmCpf = dhmCpf;
        this.dhmEmail = dhmEmail;
@@ -113,6 +113,12 @@ public class DhmVendedor  implements java.io.Serializable {
         this.dhmSalario = dhmSalario;
     }
 
+    
+    
+@Override
+    public String toString() {
+        return this.dhmNome;
+    }
 }
 
 
