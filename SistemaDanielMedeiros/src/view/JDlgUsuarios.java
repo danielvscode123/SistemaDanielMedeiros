@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,10 +6,7 @@
 package view;
 
 import bean.DhmUsuarios;
-
-import bean.DhmVendas;
 import dao.UsuariosDAO;
-import java.text.ParseException;
 import tools.Util;
 
 /**
@@ -18,50 +15,50 @@ import tools.Util;
  */
 public class JDlgUsuarios extends javax.swing.JDialog {
 
-      private boolean incluir = true;
-    
+    private boolean incluir = true;
+
     public JDlgUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Cadastro de Usuários");
         setLocationRelativeTo(null);
         Util.habilitar(false, jTxtCodigo, jTxtNome, jFmtCpf,
-        jChbAtivo, jTxtApelido, jCboNivel, jBtnConfirmar, jBtnCancelar, jFmtDataDeNascimento, jPwdSenha);
+                jChbAtivo, jTxtApelido, jCboNivel, jBtnConfirmar, jBtnCancelar, jFmtDataDeNascimento, jPwdSenha);
         Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
     }
-    
-public void beanView(DhmUsuarios usuarios) {
-    jTxtCodigo.setText(Util.intToStr(usuarios.getDhmIdUsuario()));
-    jTxtNome.setText(usuarios.getDhmNome());
-    jTxtApelido.setText(usuarios.getDhmApelido());
-    jPwdSenha.setText(usuarios.getDhmSenha());
-    jFmtCpf.setText(usuarios.getDhmCpf());
-    jFmtDataDeNascimento.setText(Util.dateToStr(usuarios.getDhmDataNascimento()));
-    jCboNivel.setSelectedIndex(usuarios.getDhmNivel());
-    jChbAtivo.setSelected(usuarios.getDhmAtivo().equals("S"));
-}
 
-public DhmUsuarios viewBean(){
-    DhmUsuarios usuarios = new DhmUsuarios();
-
-    int codigo = Util.strToInt(jTxtCodigo.getText());
-    usuarios.setDhmIdUsuario(codigo);
-    usuarios.setDhmNome(jTxtNome.getText());
-    usuarios.setDhmApelido(jTxtApelido.getText());
-    usuarios.setDhmCpf(jFmtCpf.getText());
-    usuarios.setDhmDataNascimento(Util.strToDate(jFmtDataDeNascimento.getText()));
-    usuarios.setDhmSenha(jPwdSenha.getText()); 
-    usuarios.setDhmNivel(jCboNivel.getSelectedIndex());
-    
-    if (jChbAtivo.isSelected()) {
-        usuarios.setDhmAtivo("S");
-    } else {
-        usuarios.setDhmAtivo("N");
+    public void beanView(DhmUsuarios usuarios) {
+        jTxtCodigo.setText(Util.intToStr(usuarios.getDhmIdUsuario()));
+        jTxtNome.setText(usuarios.getDhmNome());
+        jTxtApelido.setText(usuarios.getDhmApelido());
+        jPwdSenha.setText(usuarios.getDhmSenha());
+        jFmtCpf.setText(usuarios.getDhmCpf());
+        jFmtDataDeNascimento.setText(Util.dateToStr(usuarios.getDhmDataNascimento()));
+        jCboNivel.setSelectedIndex(usuarios.getDhmNivel());
+        jChbAtivo.setSelected(usuarios.getDhmAtivo().equals("S"));
     }
 
-    return usuarios;
-}
+    public DhmUsuarios viewBean() {
+        DhmUsuarios usuarios = new DhmUsuarios();
+
+        int codigo = Util.strToInt(jTxtCodigo.getText());
+        usuarios.setDhmIdUsuario(codigo);
+        usuarios.setDhmNome(jTxtNome.getText());
+        usuarios.setDhmApelido(jTxtApelido.getText());
+        usuarios.setDhmCpf(jFmtCpf.getText());
+        usuarios.setDhmDataNascimento(Util.strToDate(jFmtDataDeNascimento.getText()));
+        usuarios.setDhmSenha(jPwdSenha.getText());
+        usuarios.setDhmNivel(jCboNivel.getSelectedIndex());
+
+        if (jChbAtivo.isSelected()) {
+            usuarios.setDhmAtivo("S");
+        } else {
+            usuarios.setDhmAtivo("N");
+        }
+
+        return usuarios;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -292,7 +289,7 @@ public DhmUsuarios viewBean(){
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
 
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome,jTxtApelido, jFmtCpf,
+        Util.limpar(jTxtCodigo, jTxtNome, jTxtApelido, jFmtCpf,
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
     }//GEN-LAST:event_jBtnIncluirActionPerformed
@@ -303,40 +300,38 @@ public DhmUsuarios viewBean(){
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
 
         Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,jTxtApelido,
-                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
-       
+
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-            // TODO add your handling code here:
-    
-    if (Util.perguntar("Deseja mesmo Excluir?")) {
-        UsuariosDAO usuariosDAO = new UsuariosDAO();
-        usuariosDAO.delete(viewBean());
-        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtApelido,
-                jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
-        Util.mensagem("Usuário excluído com sucesso!");
-    }
+        // TODO add your handling code here:
+
+        if (Util.perguntar("Deseja mesmo Excluir?")) {
+            UsuariosDAO usuariosDAO = new UsuariosDAO();
+            usuariosDAO.delete(viewBean());
+            Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtApelido,
+                    jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
+            Util.mensagem("Usuário excluído com sucesso!");
+        }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
 
     private void jBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConfirmarActionPerformed
         // TODO add your handling code here:
-    UsuariosDAO usuariosDAO = new UsuariosDAO();
-  DhmUsuarios usuario = viewBean();
-if (incluir) {
-        usuariosDAO.insert(usuario);
-    } else {
-        usuariosDAO.update(usuario);
-    }
-        
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        DhmUsuarios usuarios = viewBean();
+        if (incluir == true) {
+            usuariosDAO.insert(viewBean());
+        } else {
+            usuariosDAO.update(viewBean());
+        }
+
         Util.habilitar(false, jTxtCodigo, jTxtNome, jFmtCpf,
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel, jBtnConfirmar, jBtnCancelar, jTxtApelido);
 
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-      Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf,jTxtApelido,
+        Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtApelido,
                 jFmtDataDeNascimento, jPwdSenha, jChbAtivo, jCboNivel);
 
 

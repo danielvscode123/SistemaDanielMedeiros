@@ -10,6 +10,7 @@ public class ControllerProdutos extends AbstractTableModel {
 
     public void setList(List DhmProdutos) {
         this.DhmProdutos = DhmProdutos;
+        fireTableDataChanged(); // ← IMPORTANTE: atualiza a tabela
     }
     
     public DhmProdutos getBean(int rowIndex) {
@@ -36,7 +37,7 @@ public class ControllerProdutos extends AbstractTableModel {
         } else if (columnIndex == 2) {
             return produtos.getDhmCategoria();
         } else if (columnIndex == 3) {
-            return produtos.getDhmPreco();
+            return "R$ " + String.format("%.2f", produtos.getDhmPreco());
         }
         return "";
     }

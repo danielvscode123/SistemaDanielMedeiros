@@ -7,34 +7,77 @@ package view;
 
 import bean.DhmClientes;
 import dao.ClientesDAO;
+import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author Arte Porã
- */
+import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 public class JDlgClientesPesquisar extends javax.swing.JDialog {
 
-JDlgClientes jDlgClientes;
- ControllerClientes controllerClientes;
-    /**
-     * Creates new form JDlgClientesPesquisar
-     */
+    private JDlgClientes jDlgClientes;
+    ControllerClientes controllerClientes;
+
     public JDlgClientesPesquisar(java.awt.Frame parent, boolean modal) {
-             super(parent, modal);
+        super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Pesquisar Clientes");
         controllerClientes = new ControllerClientes();
+        carregarDados();
+        jTable1.setModel(controllerClientes);
+        adicionarListenerPesquisa();
+    }
+
+    private void carregarDados() {
         ClientesDAO clientesDAO = new ClientesDAO();
         List lista = (List) clientesDAO.listAll();
         controllerClientes.setList(lista);
-        jTable1.setModel(controllerClientes);
     }
 
-        public void setJDlgClientes(JDlgClientes jDlgClientes){
-    this.jDlgClientes = jDlgClientes;
+    private void adicionarListenerPesquisa() {
+        jTextFieldSearchName.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                SwingUtilities.invokeLater(() -> filtrarPorNome());
+            }
+            
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                SwingUtilities.invokeLater(() -> filtrarPorNome());
+            }
+            
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                SwingUtilities.invokeLater(() -> filtrarPorNome());
+            }
+        });
     }
 
+    private void filtrarPorNome() {
+        String nomePesquisa = jTextFieldSearchName.getText().toLowerCase().trim();
+        
+        if (nomePesquisa.isEmpty()) {
+            carregarDados();
+        } else {
+            ClientesDAO clientesDAO = new ClientesDAO();
+            List listaCompleta = (List) clientesDAO.listAll();
+            List listaFiltrada = new ArrayList();
+            
+            for (Object obj : listaCompleta) {
+                DhmClientes cliente = (DhmClientes) obj;
+                if (cliente.getDhmNome().toLowerCase().contains(nomePesquisa)) {
+                    listaFiltrada.add(cliente);
+                }
+            }
+            
+            controllerClientes.setList(listaFiltrada);
+        }
+    }
+
+    public void setTelaAnterior(JDlgClientes jDlgClientes) {
+        this.jDlgClientes = jDlgClientes;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,9 +87,14 @@ JDlgClientes jDlgClientes;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jBtnOk = new javax.swing.JButton();
+        jTextFieldSearchName = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel1.setText("Pesquisar pelo Nome");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,23 +118,41 @@ JDlgClientes jDlgClientes;
             }
         });
 
+        jTextFieldSearchName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSearchNameActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Pesquisar pelo Nome do Cliente");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(371, 371, 371)
+                        .addComponent(jBtnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldSearchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnOk)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -97,6 +163,10 @@ JDlgClientes jDlgClientes;
         jDlgClientes.beanView(clientes);
         this.setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
+
+    private void jTextFieldSearchNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,7 +213,10 @@ JDlgClientes jDlgClientes;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnOk;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldSearchName;
     // End of variables declaration//GEN-END:variables
 }

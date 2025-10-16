@@ -10,6 +10,7 @@ public class ControllerClientes extends AbstractTableModel {
 
     public void setList(List DhmClientes) {
         this.DhmClientes = DhmClientes;
+        fireTableDataChanged(); // ← IMPORTANTE: atualiza a tabela
     }
     
     public DhmClientes getBean(int rowIndex) {

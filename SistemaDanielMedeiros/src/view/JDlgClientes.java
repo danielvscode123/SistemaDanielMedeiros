@@ -562,7 +562,7 @@ Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidad
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed
       JDlgClientesPesquisar jDlgClientesPesquisar = new JDlgClientesPesquisar(null, true);
-jDlgClientesPesquisar.setJDlgClientes(this);
+jDlgClientesPesquisar.setTelaAnterior(this);
 jDlgClientesPesquisar.setVisible(true);
     }//GEN-LAST:event_jBtnPesquisarActionPerformed
 

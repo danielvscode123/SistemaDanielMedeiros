@@ -10,6 +10,7 @@ public class ControllerVendedores extends AbstractTableModel {
 
     public void setList(List DhmVendedor) {
         this.DhmVendedor = DhmVendedor;
+        fireTableDataChanged();
     }
     
     public DhmVendedor getBean(int rowIndex) {
@@ -36,7 +37,7 @@ public class ControllerVendedores extends AbstractTableModel {
         } else if (columnIndex == 2) {
             return vendedor.getDhmCpf();
         } else if (columnIndex == 3) {
-            return vendedor.getDhmTelefone();
+            return "R$ " + String.format("%.2f", vendedor.getDhmSalario());
         }
         return "";
     }
@@ -50,7 +51,7 @@ public class ControllerVendedores extends AbstractTableModel {
         } else if (columnIndex == 2) {
             return "CPF";
         } else if (columnIndex == 3) {
-            return "Telefone";
+            return "Salário";
         } 
         return "";
     }
