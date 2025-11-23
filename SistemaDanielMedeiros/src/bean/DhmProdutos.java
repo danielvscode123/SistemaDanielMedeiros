@@ -29,6 +29,10 @@
         public DhmProdutos() {
         }
 
+        public DhmProdutos(int dhmIdProdutos) {
+        this.dhmIdProduto = dhmIdProdutos;
+    }
+        
         public DhmProdutos(String dhmDescricao, double dhmPreco, String dhmCategoria, int dhmEstoque, String dhmMarca, String dhmNome) {
            this.dhmDescricao = dhmDescricao;
            this.dhmPreco = dhmPreco;
@@ -38,7 +42,7 @@
            this.dhmNome = dhmNome;
             }
 
-         @Id @GeneratedValue(strategy=IDENTITY)
+         @Id 
 
 
         @Column(name="dhm_idProduto", unique=true, nullable=false)

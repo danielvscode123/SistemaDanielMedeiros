@@ -69,7 +69,7 @@ this.dhmIdCliente = dhmIdCliente;
      
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="dhm_idCliente", unique=true, nullable=false)

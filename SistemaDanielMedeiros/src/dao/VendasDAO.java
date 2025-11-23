@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,6 +7,7 @@
 package dao;
 
 import bean.DhmUsuarios;
+import bean.DhmVendas;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
@@ -40,25 +42,25 @@ session.delete(object);
 session.getTransaction().commit();   
     }
 
-    @Override
+     @Override
     public Object list(int codigo) {
-  session.beginTransaction();
-  Criteria criteria = session.createCriteria(DhmUsuarios.class);
-  criteria.add(Restrictions.eq("idusuarios", codigo));
-  List lista = criteria.list();
-  session.getTransaction().commit();
- return lista;
-          
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmVendas.class); 
+        criteria.add(Restrictions.eq("dhmIdVendas", codigo)); // 
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
     }
 
     @Override
     public Object listAll() {
-session.beginTransaction();
-  Criteria criteria = session.createCriteria(DhmUsuarios.class);
-  List lista = criteria.list();
-  session.getTransaction().commit();
- return lista;
-              }
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmVendas.class); 
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+              
     public static void main(String[] args) {
         VendasDAO usuariosDAO = new VendasDAO();
         usuariosDAO.listAll();

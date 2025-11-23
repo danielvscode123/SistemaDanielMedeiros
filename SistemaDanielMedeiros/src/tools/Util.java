@@ -4,6 +4,8 @@ package tools;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -63,14 +65,20 @@ public static String doubleToStr(double num) {
 }
 
 
-    public static Date strToDate(String data){
+    public static Date strToDate(String data) {
+          SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return fm.parse(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
-
     }
 
-   public static String dateToStr(Date data) {
-        return "";
- 
+
+     public static String dateToStr(Date data) {
+        SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
+        return fm.format(data);
     }
 
 }

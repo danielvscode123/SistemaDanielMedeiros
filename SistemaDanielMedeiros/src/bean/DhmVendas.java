@@ -32,26 +32,26 @@ public class DhmVendas  implements java.io.Serializable {
      private DhmClientes dhmClientes;
      private DhmVendedor dhmVendedor;
      private double dhmTotal;
-     private Date dhmDataPedido;
+     private Date dhmDataVendas;
    
 
     public DhmVendas() {
     }
 
 	
-    public DhmVendas(double dhmTotal, Date dhmDataPedido) {
-        this.dhmTotal = dhmTotal;
-        this.dhmDataPedido = dhmDataPedido;
+     public DhmVendas(int dhmIdVendas) {
+        this.dhmIdVendas = dhmIdVendas;
     }
     public DhmVendas(DhmClientes dhmClientes, DhmVendedor dhmVendedor, double dhmTotal, Date dhmDataPedido) {
        this.dhmClientes = dhmClientes;
        this.dhmVendedor = dhmVendedor;
        this.dhmTotal = dhmTotal;
-       this.dhmDataPedido = dhmDataPedido;
+       this.dhmDataVendas = dhmDataVendas;
+       
        
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="dhm_IdVendas", unique=true, nullable=false)
@@ -94,13 +94,13 @@ public class DhmVendas  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="dhm_DataPedido", nullable=false, length=10)
-    public Date getDhmDataPedido() {
-        return this.dhmDataPedido;
+    @Column(name="dhm_DataVendas", nullable=false, length=10)
+    public Date getDhmDataVendas() {
+        return this.dhmDataVendas;
     }
     
-    public void setDhmDataPedido(Date dhmDataPedido) {
-        this.dhmDataPedido = dhmDataPedido;
+    public void setDhmDataVendas(Date dhmDataVendas) {
+        this.dhmDataVendas = dhmDataVendas;
     }
 
 

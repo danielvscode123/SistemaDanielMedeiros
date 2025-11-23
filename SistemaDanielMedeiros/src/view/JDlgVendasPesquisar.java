@@ -1,11 +1,9 @@
 package view;
 
-import bean.DhmUsuarios;
-import dao.UsuariosDAO;
+import bean.DhmVendas;
+import dao.VendasDAO;
 import java.util.List;
-import view.JDlgUsuarios;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+import tools.Util;
 
 
 /**
@@ -17,20 +15,24 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
-    private JDlgUsuarios jDlgUsuarios;
 
+  private JDlgVendas jDlgVendas;
+    ControllerVendas controllerVendas;
 
     public JDlgVendasPesquisar(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+            super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Pesquisar Usuários");
-  
-    
+        setTitle("Pesquisar Pedidos");
+        controllerVendas = new ControllerVendas();
+        VendasDAO vendasDAO = new VendasDAO();
+        List lista = (List) vendasDAO.listAll();
+        controllerVendas.setList(lista);
+        jTable1.setModel(controllerVendas);
     }
 
-    public void setTelaAnterior(JDlgUsuarios jDlgUsuarios) {
-        this.jDlgUsuarios = jDlgUsuarios;
+    public void setTelaAnterior(JDlgVendas jDlgVendas) {
+        this.jDlgVendas = jDlgVendas;
     }
 
     /**
@@ -115,8 +117,13 @@ public class JDlgVendasPesquisar extends javax.swing.JDialog {
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
         // TODO add your handling code here:
-
-        this.setVisible(false);
+    if (jTable1.getSelectedRow() == -1) {
+            Util.mensagem("Nenhum registro foi selecionada. Favor selecionar um registro.");
+        } else {
+            DhmVendas vendas = controllerVendas.getBean(jTable1.getSelectedRow());
+            jDlgVendas.beanView(vendas);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jTextFieldSearchNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchNameActionPerformed

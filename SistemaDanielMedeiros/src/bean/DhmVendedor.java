@@ -51,7 +51,7 @@ this.dhmIdVendedor = dhmIdVendedor;
       
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id
 
     
     @Column(name="dhm_id_vendedor", unique=true, nullable=false)

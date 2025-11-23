@@ -45,7 +45,7 @@ public class DhmUsuarios  implements java.io.Serializable {
        this.dhmAtivo = dhmAtivo;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="dhm_idUsuario", unique=true, nullable=false)
