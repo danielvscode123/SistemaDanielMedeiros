@@ -6,13 +6,12 @@ package view;
 
 import java.awt.*;
 import javax.swing.*;
+import tools.Util;
+
 /**
  *
  * @author Arte Porã
  */
-
-
-
 public class JFrmPrincipal extends javax.swing.JFrame {
 
     /**
@@ -20,29 +19,33 @@ public class JFrmPrincipal extends javax.swing.JFrame {
      */
     public JFrmPrincipal() {
         setContentPane(new PanelBackground("/img/fundo.jpg"));
-        
-        initComponents();
-        
-         setExtendedState(MAXIMIZED_BOTH);
-         
+        setExtendedState(MAXIMIZED_BOTH);
+     JDlgLogin login = new JDlgLogin(null, true);
+    login.setVisible(true);
+    if (!login.LoginRealizado()) {
+        System.exit(0);
     }
-    
+    initComponents();
+    setLocationRelativeTo(null);
+    }
+
     public class PanelBackground extends JPanel {
-    private Image backgroundImage;
 
-    public PanelBackground(String imagePath) {
-        backgroundImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
-    }
+        private Image backgroundImage;
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if (backgroundImage != null)
-            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+        public PanelBackground(String imagePath) {
+            backgroundImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (backgroundImage != null) {
+                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            }
+        }
+
     }
-    
-    
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -182,72 +185,58 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void jMnuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuSairActionPerformed
-System.exit(0);        // TODO add your handling code here:
+        System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_jMnuSairActionPerformed
 
     private void jMnuUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuUsuariosActionPerformed
 
-JDlgUsuarios jDlgUsuarios = new JDlgUsuarios(this, true);
-jDlgUsuarios.setVisible(true);
-   // TODO add your handling code here:
+        JDlgUsuarios jDlgUsuarios = new JDlgUsuarios(this, true);
+        jDlgUsuarios.setVisible(true);
+        // TODO add your handling code here:
     }//GEN-LAST:event_jMnuUsuariosActionPerformed
 
     private void jMnuClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuClientesActionPerformed
         JDlgClientes jDlgClientes = new JDlgClientes(this, true);
-jDlgClientes.setVisible(true);
+        jDlgClientes.setVisible(true);
     }//GEN-LAST:event_jMnuClientesActionPerformed
 
     private void jMnuProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuProdutosActionPerformed
- JDlgProdutos jDlgProdutos = new JDlgProdutos(this, true);
-jDlgProdutos.setVisible(true);
+        JDlgProdutos jDlgProdutos = new JDlgProdutos(this, true);
+        jDlgProdutos.setVisible(true);
     }//GEN-LAST:event_jMnuProdutosActionPerformed
 
     private void jMnuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuPedidosActionPerformed
-   JDlgVendas jDlgVendas = new JDlgVendas(this, true);
-jDlgVendas.setVisible(true);
+        JDlgVendas jDlgVendas = new JDlgVendas(this, true);
+        jDlgVendas.setVisible(true);
     }//GEN-LAST:event_jMnuPedidosActionPerformed
 
     private void jMnuVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuVendedoresActionPerformed
         // TODO add your handling code here:
-         JDlgVendedores jDlgVendedores = new JDlgVendedores(this, true);
-jDlgVendedores.setVisible(true);
+        JDlgVendedores jDlgVendedores = new JDlgVendedores(this, true);
+        jDlgVendedores.setVisible(true);
     }//GEN-LAST:event_jMnuVendedoresActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (Exception e) {
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new JFrmPrincipal().setVisible(true);
             }
+
         });
     }
 

@@ -5,6 +5,9 @@
  */
 package view;
 
+import bean.DhmUsuarios;
+import dao.UsuariosDAO;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import tools.Util;
 
 /**
@@ -16,19 +19,32 @@ public class JDlgLogin extends javax.swing.JDialog {
     /**
      * Creates new form JDlgLogin
      */
-    
-    
+    private JDlgLogin jDlgLogin;
+
     public JDlgLogin(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setTitle("Tela De Login");
+        setLocationRelativeTo(null);
+
         initComponents();
-        
-          if(jTxtApelido.getText().isEmpty()){
-             Util.habilitar(false, jBtnEntrar);
-        }
-          else{
-          Util.habilitar(true, jBtnEntrar);
-          }
-          
+
+        //       if(jTxtApelido.getText().isEmpty()){;
+        //           Util.habilitar(false, jBtnEntrar);
+        //    }
+        //     else{
+        //     Util.habilitar(true, jBtnEntrar);
+        //     }
+    }
+
+    private int tentativas = 0;
+    private boolean loginRealizado = false;
+
+    public boolean LoginRealizado() {
+        return loginRealizado;
+    }
+
+    public int getTentativas() {
+        return tentativas;
     }
 
     /**
@@ -48,6 +64,7 @@ public class JDlgLogin extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jPwdSenha = new javax.swing.JPasswordField();
         jBtnEntrar = new javax.swing.JButton();
+        jBtnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,6 +112,16 @@ public class JDlgLogin extends javax.swing.JDialog {
             }
         });
 
+        jBtnCadastrar.setBackground(new java.awt.Color(0, 51, 153));
+        jBtnCadastrar.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
+        jBtnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnCadastrar.setText("Cadastrar Usuario");
+        jBtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCadastrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -102,19 +129,20 @@ public class JDlgLogin extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
+                        .addGap(50, 50, 50)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jBtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel2))
+                        .addGap(53, 53, 53)
+                        .addComponent(jTxtApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jTxtApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -131,9 +159,10 @@ public class JDlgLogin extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBtnCadastrar))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jPwdSenha, jTxtApelido});
@@ -163,9 +192,30 @@ public class JDlgLogin extends javax.swing.JDialog {
 
     private void jBtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEntrarActionPerformed
         // TODO add your handling code here:
-        
-    
+        String apelido = jTxtApelido.getText();
+        String senha = new String(jPwdSenha.getPassword());
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        DhmUsuarios usuario = usuariosDAO.login(apelido, senha);
+        tentativas++;
+        if (usuario != null) {
+            Util.mensagem("Login realizado com sucesso!");
+            loginRealizado = true;
+            dispose();
+        } else {
+            Util.mensagem("Apelido ou senha incorretos! (" + tentativas + "/3)");
+            loginRealizado = false;
+            if (tentativas >= 3) {
+                dispose();
+            }
+        }
+
+
     }//GEN-LAST:event_jBtnEntrarActionPerformed
+
+    private void jBtnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCadastrarActionPerformed
+        // TODO add your handling code here:
+    new JDlgUsuarios(null, true).setVisible(true);
+    }//GEN-LAST:event_jBtnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,6 +260,7 @@ public class JDlgLogin extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBtnCadastrar;
     private javax.swing.JButton jBtnEntrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
