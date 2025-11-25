@@ -23,7 +23,8 @@ public class JDlgClientes extends javax.swing.JDialog {
      * Creates new form JDlgClientes
      */
     private boolean incluir = true;
-    private MaskFormatter mascaraCpf, mascaraDataNasc, mascaraTel, mascaraDataCad,mascaraRg;
+    private boolean pesquisado = false;
+    private MaskFormatter mascaraCpf, mascaraDataNasc, mascaraTel, mascaraDataCad, mascaraRg;
 
     public JDlgClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -48,7 +49,7 @@ public class JDlgClientes extends javax.swing.JDialog {
             jFmtDataNascimento.setFormatterFactory(new DefaultFormatterFactory(mascaraDataNasc));
             jFmtDataCadastro.setFormatterFactory(new DefaultFormatterFactory(mascaraDataCad));
             jFmtRg.setFormatterFactory(new DefaultFormatterFactory(mascaraRg));
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -573,29 +574,37 @@ public class JDlgClientes extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
-        Util.habilitar(true, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidade,
-                jFmtCep, jFmtRg, jTxtEndereco, jFmtCpf, jFmtDataNascimento, jFmtDataCadastro, jFmtCep,
-                jPwdSenha, jTxtNumero, jChbAtivo, jBtnConfirmar, jBtnCancelar);
 
-        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+        if (pesquisado = true && !jTxtCodigo.getText().isEmpty()) {
+            Util.habilitar(true, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidade,
+                    jFmtCep, jFmtRg, jTxtEndereco, jFmtCpf, jFmtDataNascimento, jFmtDataCadastro, jFmtCep,
+                    jPwdSenha, jTxtNumero, jChbAtivo, jBtnConfirmar, jBtnCancelar);
 
-        Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidade,
-                jFmtCep, jFmtRg, jTxtEndereco, jFmtCpf, jFmtDataNascimento, jFmtDataCadastro, jFmtCep,
-                jPwdSenha, jTxtNumero, jChbAtivo);
+            Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
 
+            Util.limpar(jTxtCodigo, jTxtEmail, jTxtBairro, jTxtNome, jFmtTelefone, jTxtCidade,
+                    jFmtCep, jFmtRg, jTxtEndereco, jFmtCpf, jFmtDataNascimento, jFmtDataCadastro, jFmtCep,
+                    jPwdSenha, jTxtNumero, jChbAtivo);
+        } else {
+            Util.mensagem("O seu doido, precisa pesquisar para alterar!!!");
+        }
 
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        if (Util.perguntar("Deseja mesmo Excluir?")) {
-            ClientesDAO clientesDAO = new ClientesDAO();
-            clientesDAO.delete(viewBean());
-            Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtEmail, jFmtTelefone,
-                    jTxtEndereco, jTxtNumero, jFmtRg, jTxtBairro, jTxtCidade, jFmtCep,
-                    jFmtDataNascimento, jFmtDataCadastro, jFmtCep, jPwdSenha, jChbAtivo);
-            Util.mensagem("Cliente excluído com sucesso!");
-        }
 
+        if (pesquisado = true && !jTxtCodigo.getText().isEmpty()) {
+            if (Util.perguntar("Deseja mesmo Excluir?")) {
+                ClientesDAO clientesDAO = new ClientesDAO();
+                clientesDAO.delete(viewBean());
+                Util.limpar(jTxtCodigo, jTxtNome, jFmtCpf, jTxtEmail, jFmtTelefone,
+                        jTxtEndereco, jTxtNumero, jFmtRg, jTxtBairro, jTxtCidade, jFmtCep,
+                        jFmtDataNascimento, jFmtDataCadastro, jFmtCep, jPwdSenha, jChbAtivo);
+                Util.mensagem("Cliente excluído com sucesso!");
+            }
+        } else {
+            Util.mensagem("O seu doido, precisa pesquisar para excluir!!!");
+        }
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void jBtnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPesquisarActionPerformed

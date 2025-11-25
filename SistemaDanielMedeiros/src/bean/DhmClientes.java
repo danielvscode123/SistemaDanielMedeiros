@@ -222,10 +222,23 @@ this.dhmIdCliente = dhmIdCliente;
     }
 
 
+    @Override
+public boolean equals(Object object) {
+    if (object instanceof DhmClientes) {
+        DhmClientes clientes = (DhmClientes) object;
+        if (clientes.getDhmIdCliente() == this.getDhmIdCliente()) {
+            return true;
+        }
+    }
+    return false;
+}
+    
 @Override
     public String toString() {
         return this.dhmNome;
     }
 }
+
+
 
 

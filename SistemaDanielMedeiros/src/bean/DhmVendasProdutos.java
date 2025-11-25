@@ -49,7 +49,7 @@ public class DhmVendasProdutos  implements java.io.Serializable {
         this.dhmIdVendasProdutos = dhmIdVendasProdutos;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="dhm_fkProdutos", nullable=false)
     public DhmProdutos getDhmProdutos() {
         return this.dhmProdutos;
@@ -59,7 +59,7 @@ public class DhmVendasProdutos  implements java.io.Serializable {
         this.dhmProdutos = dhmProdutos;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
+@ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="dhm_fkVendas", nullable=false)
     public DhmVendas getDhmVendas() {
         return this.dhmVendas;

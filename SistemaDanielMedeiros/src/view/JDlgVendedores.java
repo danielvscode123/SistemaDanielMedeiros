@@ -18,6 +18,7 @@ public class JDlgVendedores extends javax.swing.JDialog {
 
 
       private boolean incluir = true;
+      private boolean pesquisado = false;
 
     public JDlgVendedores(java.awt.Frame parent, boolean modal) {
       super(parent, modal);
@@ -278,18 +279,30 @@ public DhmVendedor viewBean() {
 
     private void jBtnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAlterarActionPerformed
         // TODO add your handling code here:
-   Util.habilitar(true, jTxtEmail, jTxtNome, jFmtCpf, jBtnConfirmar, 
+ 
+         if (pesquisado = true && !jTxtCodigo.getText().isEmpty()) {
+        Util.habilitar(true, jTxtEmail, jTxtNome, jFmtCpf, jBtnConfirmar, 
             jBtnCancelar, jFmtTelefone, jTxtSalario);
     Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+         }
+     else{
+       Util.mensagem("O seu doido, precisa pesquisar para alterar");
+       }
     }//GEN-LAST:event_jBtnAlterarActionPerformed
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-          if (Util.perguntar("Deseja mesmo Excluir?")) {
+       
+          if (pesquisado = true && !jTxtCodigo.getText().isEmpty()) {
+        if (Util.perguntar("Deseja mesmo Excluir?")) {
         VendedoresDAO vendedoresDAO = new VendedoresDAO();
         vendedoresDAO.delete(viewBean());
         Util.limpar(jTxtEmail, jTxtNome, jFmtCpf, jTxtCodigo, jFmtTelefone, jTxtSalario);
         Util.mensagem("Vendedor excluído com sucesso!");
     }
+         } else {
+            Util.mensagem("O seu doido, precisa pesquisar para excluir!!!");
+        }
+        
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
 
