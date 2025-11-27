@@ -87,6 +87,17 @@ public class JDlgVendas extends javax.swing.JDialog {
         VendasProdutosDAO vendasProdutosDAO = new VendasProdutosDAO();
         List lista = (List) vendasProdutosDAO.listProdutos(vendas);
         controllerVendProd.setList(lista);
+        Total();
+    }
+
+    public void Total() {
+        double soma = 0.0;
+        int rows = jTable1.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            DhmVendasProdutos vendProd = controllerVendProd.getBean(i);
+            soma += vendProd.getDhmQuantidade() * vendProd.getDhmValorUnitario();
+        }
+        jTxtDhmTotal.setText(Util.doubleToStr(soma));
     }
 
     /**
@@ -403,14 +414,13 @@ public class JDlgVendas extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         if (pesquisado = true && !jTxtDhmCodigo.getText().isEmpty()) {
-            Util.habilitar(true, jTxtDhmCodigo, jFmtDhmData, jCboDhmClientes, 
-            jCboDhmVendedor, jTxtDhmTotal,
-            jBtnConfirmar, jBtnCancelar, jBtnAlterarProd,jBtnExcluirProd, jBtnIncluirProd);
-        Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-        controllerVendProd.setList(new ArrayList());
-        incluir = false;
-        }
-        else {
+            Util.habilitar(true, jTxtDhmCodigo, jFmtDhmData, jCboDhmClientes,
+                    jCboDhmVendedor, jTxtDhmTotal,
+                    jBtnConfirmar, jBtnCancelar, jBtnAlterarProd, jBtnExcluirProd, jBtnIncluirProd);
+            Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
+            controllerVendProd.setList(new ArrayList());
+            incluir = false;
+        } else {
             Util.mensagem("O seu maluco, precisa pesquisar para alterar");
         }
     }//GEN-LAST:event_jBtnAlterarActionPerformed
@@ -451,9 +461,9 @@ public class JDlgVendas extends javax.swing.JDialog {
 
         }
 
-        Util.habilitar(false, jTxtDhmCodigo, jFmtDhmData, jCboDhmClientes, 
-            jCboDhmVendedor, jTxtDhmTotal,
-            jBtnConfirmar, jBtnCancelar);
+        Util.habilitar(false, jTxtDhmCodigo, jFmtDhmData, jCboDhmClientes,
+                jCboDhmVendedor, jTxtDhmTotal,
+                jBtnConfirmar, jBtnCancelar);
         Util.habilitar(true, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
         Util.limpar(jTxtDhmCodigo, jFmtDhmData, jCboDhmClientes, jCboDhmVendedor, jTxtDhmTotal);
         controllerVendProd.setList(new ArrayList());
@@ -463,6 +473,7 @@ public class JDlgVendas extends javax.swing.JDialog {
     private void jBtnExcluirProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirProdActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
+
         if (jTable1.getSelectedRow() == -1) {
             Util.mensagem("Oh seu loco, precisa selecionar uma linha.");
         } else {

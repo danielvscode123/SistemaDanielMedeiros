@@ -82,6 +82,12 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
 
         jLabel3.setText("Valor Unitário");
 
+        jTxtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtTotalActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Total");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ok.png"))); // NOI18N
@@ -175,6 +181,9 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
         vendasProdutos.setDhmQuantidade(Util.strToInt(jTxtQuantidade.getText()));
         vendasProdutos.setDhmValorUnitario(Util.strToDouble(jTxtValorUni.getText()));
         jDlgVendas.controllerVendProd.addBean(vendasProdutos);
+         if (jDlgVendas != null) {
+            jDlgVendas.Total();
+        }
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -202,6 +211,10 @@ public class JDlgVendasProdutos extends javax.swing.JDialog {
             Util.limpar(jTxtTotal);
         }
     }//GEN-LAST:event_jTxtQuantidadeKeyReleased
+
+    private void jTxtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtTotalActionPerformed
 
     /**
      * @param args the command line arguments

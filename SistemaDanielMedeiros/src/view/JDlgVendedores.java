@@ -7,6 +7,11 @@ package view;
 
 import bean.DhmVendedor;
 import dao.VendedoresDAO;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import tools.Util;
 
 
@@ -19,7 +24,8 @@ public class JDlgVendedores extends javax.swing.JDialog {
 
       private boolean incluir = true;
       private boolean pesquisado = false;
-
+      private MaskFormatter mascaraCpf, mascaraTel;
+       
     public JDlgVendedores(java.awt.Frame parent, boolean modal) {
       super(parent, modal);
         initComponents();   
@@ -29,7 +35,14 @@ public class JDlgVendedores extends javax.swing.JDialog {
    jTxtCodigo,jBtnConfirmar, jBtnCancelar, jFmtTelefone, jTxtSalario);
         Util.limpar(jTxtEmail,jTxtNome,jFmtCpf,
    jTxtCodigo,jFmtTelefone, jTxtSalario);
-
+ try {
+      mascaraTel = new MaskFormatter("(##) #####-####");
+            mascaraCpf = new MaskFormatter("###.###.###-##");
+             jFmtTelefone.setFormatterFactory(new DefaultFormatterFactory(mascaraTel));
+            jFmtCpf.setFormatterFactory(new DefaultFormatterFactory(mascaraCpf));
+        } catch (ParseException ex) {
+            Logger.getLogger(JDlgUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 public void beanView(DhmVendedor vendedor) {

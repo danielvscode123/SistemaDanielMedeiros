@@ -3,10 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
-
-import java.awt.*;
 import javax.swing.*;
-import tools.Util;
 
 /**
  *
@@ -18,33 +15,15 @@ public class JFrmPrincipal extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public JFrmPrincipal() {
-        setContentPane(new PanelBackground("/img/fundo.jpg"));
+
         setExtendedState(MAXIMIZED_BOTH);
-     JDlgLogin login = new JDlgLogin(null, true);
-    login.setVisible(true);
-    if (!login.LoginRealizado()) {
-        System.exit(0);
-    }
-    initComponents();
-    setLocationRelativeTo(null);
-    }
-
-    public class PanelBackground extends JPanel {
-
-        private Image backgroundImage;
-
-        public PanelBackground(String imagePath) {
-            backgroundImage = new ImageIcon(getClass().getResource(imagePath)).getImage();
+        JDlgLogin login = new JDlgLogin(null, true);
+        login.setVisible(true);
+        if (!login.LoginRealizado()) {
+            System.exit(0);
         }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            if (backgroundImage != null) {
-                g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-            }
-        }
-
+        initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

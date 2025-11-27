@@ -16,6 +16,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author u07887987156
  */
+
 public class VendasDAO extends AbstractDAO{
 
     @Override
