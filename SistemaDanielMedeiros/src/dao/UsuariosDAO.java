@@ -62,6 +62,36 @@ public class UsuariosDAO extends AbstractDAO {
         session.getTransaction().commit();
         return usuario;
     }
+    
+    
+public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmUsuarios.class);
+        criteria.add(Restrictions.like("dhmNome", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listValor(int nivel) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmUsuarios.class);
+        criteria.add(Restrictions.eq("dhmNivel", nivel ));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listNomeValor(String nome, double nivel) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmUsuarios.class);
+        criteria.add(Restrictions.like("dhmNome", "%" + nome + "%"));
+        criteria.add(Restrictions.eq("dhmNivel", nivel ));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+    
 
     @Override
     public Object listAll() {

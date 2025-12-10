@@ -50,6 +50,34 @@ public Object list(int codigo) {
     return produto;
 }
 
+public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmProdutos.class);
+        criteria.add(Restrictions.like("dhmNome", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listValor(double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmProdutos.class);
+        criteria.add(Restrictions.ge("dhmPreco", valor ));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listNomeValor(String nome, double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmProdutos.class);
+        criteria.add(Restrictions.like("dhmNome", "%" + nome + "%"));
+        criteria.add(Restrictions.ge("dhmPreco", valor ));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
     @Override
     public Object listAll() {
 session.beginTransaction();
