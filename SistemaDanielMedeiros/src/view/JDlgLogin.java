@@ -82,7 +82,7 @@ public class JDlgLogin extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,21 +133,18 @@ public class JDlgLogin extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jTxtApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jBtnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPwdSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jTxtApelido, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel2)))
-                .addGap(50, 50, 50))
+                            .addComponent(jBtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPwdSenha, jTxtApelido});

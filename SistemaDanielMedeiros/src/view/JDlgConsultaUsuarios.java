@@ -3,45 +3,40 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package view;
-
 import bean.DhmUsuarios;
-import dao.ProdutosDAO;
 import dao.UsuariosDAO;
 import java.util.ArrayList;
 import java.util.List;
 import tools.Util;
-import view.JDlgUsuarios;
 
 /**
  *
  * @author Marcos
  */
 public class JDlgConsultaUsuarios extends javax.swing.JDialog {
-  ControllerConsultasProdutos controllerConsultasProdutos;
+
+    ControllerConsultasUsuarios controllerConsultasUsuarios;
+
     /**
      * Creates new form JDlgUsuariosPesquisar
      */
- 
     public JDlgConsultaUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Pesquisar Usuários");
-   
-        controllerConsultasProdutos = new ControllerConsultasProdutos();
-        ProdutosDAO produtosDAO = new ProdutosDAO();
-        List lista = new ArrayList();
-        controllerConsultasProdutos.setList(lista);
-        jTable1.setModel(controllerConsultasProdutos);
-        
-    //    controllerUsuarios = new ControllerUsuarios();
-    //    UsuariosDAO usuariosDAO = new UsuariosDAO();
-    //    List lista = (List) usuariosDAO.listAll();
-    //    controllerUsuarios.setList(lista);
-    //    jTable1.setModel(controllerUsuarios);
-    
-    }
 
+        controllerConsultasUsuarios = new ControllerConsultasUsuarios();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        List lista = new ArrayList();
+        controllerConsultasUsuarios.setList(lista);
+        jTable1.setModel(controllerConsultasUsuarios);
+  Util.limpar(jCboNivel);
+
+   
+    }
+    
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,9 +51,9 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
         jBtnOk = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jTxtNome = new javax.swing.JTextField();
-        jTxtValor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jBtnConsultar = new javax.swing.JButton();
+        jCboNivel = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,12 +84,19 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
 
         jLabel1.setText("Nome");
 
-        jLabel2.setText("Valor Maior que ");
+        jLabel2.setText("Nivel");
 
         jBtnConsultar.setText("Consultar");
         jBtnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnConsultarActionPerformed(evt);
+            }
+        });
+
+        jCboNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "administrador", "funcionario", "vendedor", "gerente" }));
+        jCboNivel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCboNivelActionPerformed(evt);
             }
         });
 
@@ -105,41 +107,40 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addComponent(jBtnConsultar))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jBtnOk))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtnConsultar)))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBtnConsultar))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnConsultar)
+                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCboNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBtnOk)
                 .addContainerGap())
         );
@@ -148,7 +149,7 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnOkActionPerformed
-       setVisible(false);
+        setVisible(false);
     }//GEN-LAST:event_jBtnOkActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -160,19 +161,23 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
 
     private void jBtnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnConsultarActionPerformed
         // TODO add your handling code here:
-        ProdutosDAO produtosDAO = new ProdutosDAO();
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
         List lista;
-        if ((jTxtNome.getText().isEmpty() == false) && (jTxtValor.getText().isEmpty() == false)){
-            lista = (List) produtosDAO.listNomeValor(jTxtNome.getText(), Util.strToDouble(jTxtValor.getText()));
-        }else if (jTxtNome.getText().isEmpty() == false){
-            lista  = (List) produtosDAO.listNome(jTxtNome.getText());
-        }else if (jTxtValor.getText().isEmpty() == false){
-            lista = (List) produtosDAO.listValor(Util.strToDouble(jTxtValor.getText()));
-        }else {
-            lista = (List) produtosDAO.listAll();
+        if ((jTxtNome.getText().isEmpty() == false) && (jTxtNome.getText().isEmpty() == false)) {
+            lista = (List) usuariosDAO.listNomeNivel(jTxtNome.getText(), jCboNivel.getSelectedIndex());
+        } else if (jTxtNome.getText().isEmpty() == false) {
+            lista = (List) usuariosDAO.listNome(jTxtNome.getText());
+        } else if (jCboNivel.getSelectedIndex() != -1) {
+            lista = (List) usuariosDAO.listNivel(jCboNivel.getSelectedIndex());
+        } else {
+            lista = (List) usuariosDAO.listAll();
         }
-        controllerConsultasProdutos.setList(lista);
+        controllerConsultasUsuarios.setList(lista);
     }//GEN-LAST:event_jBtnConsultarActionPerformed
+
+    private void jCboNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCboNivelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCboNivelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,11 +231,11 @@ public class JDlgConsultaUsuarios extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnConsultar;
     private javax.swing.JButton jBtnOk;
+    private javax.swing.JComboBox<String> jCboNivel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTxtNome;
-    private javax.swing.JTextField jTxtValor;
     // End of variables declaration//GEN-END:variables
 }

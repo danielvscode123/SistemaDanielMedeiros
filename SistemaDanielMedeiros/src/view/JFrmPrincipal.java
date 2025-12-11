@@ -37,6 +37,15 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMnuCadastros = new javax.swing.JMenu();
         jMnuUsuarios = new javax.swing.JMenuItem();
@@ -47,6 +56,11 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         jMnuSair = new javax.swing.JMenuItem();
         jMnuMovimento = new javax.swing.JMenu();
         jMnuPedidos = new javax.swing.JMenuItem();
+        jMnuMovimento1 = new javax.swing.JMenu();
+        jMnuPedidos1 = new javax.swing.JMenuItem();
+        jMnuPedidos2 = new javax.swing.JMenuItem();
+        jMnuPedidos3 = new javax.swing.JMenuItem();
+        jMnuPedidos4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -54,15 +68,130 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fundo.jpg"))); // NOI18N
 
+        jToolBar1.setRollover(true);
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario-de-perfil (1) (1).png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/caixas.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jToolBar1.add(jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(0, 102, 153));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrinho-de-compras.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jToolBar1.add(jPanel3);
+
+        jPanel5.setBackground(new java.awt.Color(255, 102, 102));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2652218.png"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/client_6009897 (2).png"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(5, 5, 5))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jToolBar1.add(jPanel5);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1369, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
 
         jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -148,6 +277,55 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMnuMovimento);
 
+        jMnuMovimento1.setMnemonic('m');
+        jMnuMovimento1.setText("Consultas");
+
+        jMnuPedidos1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMnuPedidos1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/usuario-de-perfil (1) (1).png"))); // NOI18N
+        jMnuPedidos1.setMnemonic('P');
+        jMnuPedidos1.setText("Usuarios");
+        jMnuPedidos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuPedidos1ActionPerformed(evt);
+            }
+        });
+        jMnuMovimento1.add(jMnuPedidos1);
+
+        jMnuPedidos2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMnuPedidos2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/client_6009897 (2).png"))); // NOI18N
+        jMnuPedidos2.setMnemonic('P');
+        jMnuPedidos2.setText("Vendedores");
+        jMnuPedidos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuPedidos2ActionPerformed(evt);
+            }
+        });
+        jMnuMovimento1.add(jMnuPedidos2);
+
+        jMnuPedidos3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMnuPedidos3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/2652218.png"))); // NOI18N
+        jMnuPedidos3.setMnemonic('P');
+        jMnuPedidos3.setText("Produtos");
+        jMnuPedidos3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuPedidos3ActionPerformed(evt);
+            }
+        });
+        jMnuMovimento1.add(jMnuPedidos3);
+
+        jMnuPedidos4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMnuPedidos4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/carrinho-de-compras.png"))); // NOI18N
+        jMnuPedidos4.setMnemonic('P');
+        jMnuPedidos4.setText("Vendas");
+        jMnuPedidos4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnuPedidos4ActionPerformed(evt);
+            }
+        });
+        jMnuMovimento1.add(jMnuPedidos4);
+
+        jMenuBar1.add(jMnuMovimento1);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,6 +375,61 @@ public class JFrmPrincipal extends javax.swing.JFrame {
         jDlgVendedores.setVisible(true);
     }//GEN-LAST:event_jMnuVendedoresActionPerformed
 
+    private void jMnuPedidos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuPedidos1ActionPerformed
+        // TODO add your handling code here:
+         JDlgVendedores jDlgVendedores = new JDlgVendedores(this, true);
+        jDlgVendedores.setVisible(true);
+    }//GEN-LAST:event_jMnuPedidos1ActionPerformed
+
+    private void jMnuPedidos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuPedidos2ActionPerformed
+        // TODO add your handling code here:
+         JDlgConsultaVendedores jDlgConsultaVendedores = new JDlgConsultaVendedores(this, true);
+        jDlgConsultaVendedores.setVisible(true);
+    }//GEN-LAST:event_jMnuPedidos2ActionPerformed
+
+    private void jMnuPedidos3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuPedidos3ActionPerformed
+        // TODO add your handling code here:
+JDlgConsultaProdutos jDlgConsultaProdutos = new JDlgConsultaProdutos(this, true);
+        jDlgConsultaProdutos.setVisible(true);
+    }//GEN-LAST:event_jMnuPedidos3ActionPerformed
+
+    private void jMnuPedidos4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuPedidos4ActionPerformed
+        // TODO add your handling code here:
+        
+        JDlgConsultaVendas jDlgConsultaVendas = new JDlgConsultaVendas(this, true);
+        jDlgConsultaVendas.setVisible(true);
+    }//GEN-LAST:event_jMnuPedidos4ActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+            JDlgUsuarios jDlgUsuarios = new JDlgUsuarios(this, true);
+        jDlgUsuarios.setVisible(true);
+        
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+            JDlgProdutos jDlgProdutos = new JDlgProdutos(this, true);
+        jDlgProdutos.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+    JDlgVendas jDlgVendas = new JDlgVendas(this, true);
+        jDlgVendas.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+            JDlgConsultaProdutos jDlgConsultaProdutos = new JDlgConsultaProdutos(this, true);
+        jDlgConsultaProdutos.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+ JDlgConsultaVendedores jDlgConsultaVendedores = new JDlgConsultaVendedores(this, true);
+        jDlgConsultaVendedores.setVisible(true);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -221,16 +454,30 @@ public class JFrmPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMnuCadastros;
     private javax.swing.JMenuItem jMnuClientes;
     private javax.swing.JMenu jMnuMovimento;
+    private javax.swing.JMenu jMnuMovimento1;
     private javax.swing.JMenuItem jMnuPedidos;
+    private javax.swing.JMenuItem jMnuPedidos1;
+    private javax.swing.JMenuItem jMnuPedidos2;
+    private javax.swing.JMenuItem jMnuPedidos3;
+    private javax.swing.JMenuItem jMnuPedidos4;
     private javax.swing.JMenuItem jMnuProdutos;
     private javax.swing.JMenuItem jMnuSair;
     private javax.swing.JMenuItem jMnuUsuarios;
     private javax.swing.JMenuItem jMnuVendedores;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

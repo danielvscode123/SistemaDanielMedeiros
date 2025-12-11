@@ -418,7 +418,6 @@ public class JDlgVendas extends javax.swing.JDialog {
                     jCboDhmVendedor, jTxtDhmTotal,
                     jBtnConfirmar, jBtnCancelar, jBtnAlterarProd, jBtnExcluirProd, jBtnIncluirProd);
             Util.habilitar(false, jBtnIncluir, jBtnAlterar, jBtnExcluir, jBtnPesquisar);
-            controllerVendProd.setList(new ArrayList());
             incluir = false;
         } else {
             Util.mensagem("O seu maluco, precisa pesquisar para alterar");
@@ -458,8 +457,16 @@ public class JDlgVendas extends javax.swing.JDialog {
             }
         } else {
             vendasDAO.update(vendas);
-
+            //excluo todos os vendas produtos do pedido
+            vendasProdutosDAO.deleteProdutos(vendas);
+            //incluo os vendas produtos
+            for (int ind = 0; ind < jTable1.getRowCount(); ind++) {
+                DhmVendasProdutos vendasProdutos = controllerVendProd.getBean(ind);
+                vendasProdutos.setDhmVendas(vendas);
+                vendasProdutosDAO.insert(vendasProdutos);
+            }
         }
+
 
         Util.habilitar(false, jTxtDhmCodigo, jFmtDhmData, jCboDhmClientes,
                 jCboDhmVendedor, jTxtDhmTotal,

@@ -29,7 +29,7 @@ public class VendedoresDAO extends AbstractDAO {
         session.flush();
         session.clear();
         session.delete(object);
-        session.getTransaction().commit();   
+        session.getTransaction().commit();
     }
 
     @Override
@@ -40,6 +40,34 @@ public class VendedoresDAO extends AbstractDAO {
         Object vendedor = criteria.uniqueResult();
         session.getTransaction().commit();
         return vendedor;
+    }
+
+    public Object listNome(String nome) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmVendedor.class);
+        criteria.add(Restrictions.like("dhmNome", "%" + nome + "%"));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listSalario(double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmVendedor.class);
+        criteria.add(Restrictions.ge("dhmSalario", valor));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
+    }
+
+    public Object listNomeSalario(String nome, double valor) {
+        session.beginTransaction();
+        Criteria criteria = session.createCriteria(DhmVendedor.class);
+        criteria.add(Restrictions.like("dhmNome", "%" + nome + "%"));
+        criteria.add(Restrictions.ge("dhmSalario", valor));
+        List lista = criteria.list();
+        session.getTransaction().commit();
+        return lista;
     }
 
     @Override

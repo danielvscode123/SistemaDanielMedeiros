@@ -60,6 +60,21 @@ public class VendasProdutosDAO extends AbstractDAO {
         session.getTransaction().commit();
         return lista;
     }
+    
+    public void deleteProdutos(DhmVendas vendas) {
+   
+        List lista = (List) listProdutos(vendas);
+        //deleta  a lista acima 
+        session.beginTransaction();
+        for (int i = 0; i < lista.size(); i++) {
+            DhmVendasProdutos vendasProdutos = (DhmVendasProdutos) lista.get(i);
+            //delete(vendasProdutos);
+            session.flush();
+            session.clear();
+            session.delete(vendasProdutos);
+        }
+        session.getTransaction().commit();
+    }
 
     @Override
     public Object listAll() {

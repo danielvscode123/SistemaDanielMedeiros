@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package view;
-
-import bean.DhmProdutos;
 import bean.DhmUsuarios;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -16,21 +14,21 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ControllerConsultasUsuarios extends AbstractTableModel {
 
-    private List lstDhmProdutos;
+    private List lstDhmUsuarios;
 
-    public void setList(List lstDhmProdutos) {
-        this.lstDhmProdutos = lstDhmProdutos;
+    public void setList(List lstDhmUsuarios) {
+        this.lstDhmUsuarios = lstDhmUsuarios;
         this.fireTableDataChanged();
         
     }
     
-    public DhmProdutos getBean(int rowIndex) {
-        return (DhmProdutos) lstDhmProdutos.get(rowIndex);
+    public DhmUsuarios getBean(int rowIndex) {
+        return (DhmUsuarios) lstDhmUsuarios.get(rowIndex);
     }
 
     @Override
     public int getRowCount() {
-        return lstDhmProdutos.size();
+        return lstDhmUsuarios.size();
                 
     }
 
@@ -41,13 +39,13 @@ public class ControllerConsultasUsuarios extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        DhmProdutos produtos = (DhmProdutos) lstDhmProdutos.get( rowIndex);
+        DhmUsuarios produtos = (DhmUsuarios) lstDhmUsuarios.get( rowIndex);
         if ( columnIndex == 0 ){
-            return produtos.getDhmIdProduto();
+            return produtos.getDhmIdUsuario();
         } else if (columnIndex ==1) {
             return produtos.getDhmNome();        
         } else if (columnIndex ==2) {
-            return produtos.getDhmPreco();
+            return produtos.getDhmDataNascimento();
         } 
         return "";
     }
@@ -59,7 +57,7 @@ public class ControllerConsultasUsuarios extends AbstractTableModel {
         } else if ( columnIndex == 1) {
             return "Nome";         
         } else if ( columnIndex == 2) {
-            return "Valor Unitario";
+            return "Data de Nascimento";
         } 
         return "";
     }

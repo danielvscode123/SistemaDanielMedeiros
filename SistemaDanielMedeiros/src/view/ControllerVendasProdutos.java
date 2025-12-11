@@ -4,6 +4,7 @@
  */
 package view;
 
+import bean.DhmVendas;
 import bean.DhmVendasProdutos;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -15,31 +16,33 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ControllerVendasProdutos extends AbstractTableModel {
 
-    private List lstPedidosProdutos;
+    private List lstVendasProdutos;
 
-    public void setList(List lstPedidosProdutos) {
-        this.lstPedidosProdutos = lstPedidosProdutos;
+    public void setList(List lstVendasProdutos) {
+        this.lstVendasProdutos = lstVendasProdutos;
         
         this.fireTableDataChanged();
     }
     
     public DhmVendasProdutos getBean(int rowIndex) {
-        return (DhmVendasProdutos) lstPedidosProdutos.get(rowIndex);
+        return (DhmVendasProdutos) lstVendasProdutos.get(rowIndex);
     }
 
     public void addBean(DhmVendasProdutos dhmVendasProdutos) {
-        lstPedidosProdutos.add(dhmVendasProdutos);
+        lstVendasProdutos.add(dhmVendasProdutos);
         this.fireTableDataChanged();
     }
     
     public void removeBean(int rowIndex) {
-        lstPedidosProdutos.remove(rowIndex);
+        lstVendasProdutos.remove(rowIndex);
         this.fireTableDataChanged();
     }
     
+     
+    
     @Override
     public int getRowCount() {
-        return lstPedidosProdutos.size();                
+        return lstVendasProdutos.size();                
     }
 
     @Override
@@ -49,7 +52,7 @@ public class ControllerVendasProdutos extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        DhmVendasProdutos dhmVendasProdutos = (DhmVendasProdutos) lstPedidosProdutos.get( rowIndex);
+        DhmVendasProdutos dhmVendasProdutos = (DhmVendasProdutos) lstVendasProdutos.get( rowIndex);
         if ( columnIndex == 0 ){
             return dhmVendasProdutos.getDhmProdutos().getDhmIdProduto();
         } else if (columnIndex ==1) {

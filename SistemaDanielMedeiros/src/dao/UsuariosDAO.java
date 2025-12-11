@@ -73,7 +73,7 @@ public Object listNome(String nome) {
         return lista;
     }
 
-    public Object listValor(int nivel) {
+    public Object listNivel(int nivel) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(DhmUsuarios.class);
         criteria.add(Restrictions.eq("dhmNivel", nivel ));
@@ -82,7 +82,7 @@ public Object listNome(String nome) {
         return lista;
     }
 
-    public Object listNomeValor(String nome, double nivel) {
+    public Object listNomeNivel(String nome, int nivel) {
         session.beginTransaction();
         Criteria criteria = session.createCriteria(DhmUsuarios.class);
         criteria.add(Restrictions.like("dhmNome", "%" + nome + "%"));
